@@ -1,24 +1,24 @@
-import java.util.Random;
 
-public class Computer {
-	User u = new User();
-	Random num = new Random();
-
-	int coin = 20;
-
-	public int shakeCoin(User u) {
-		int answer = u.answer();
-		return num.nextInt(answer) + 1;
+public class Computer extends Product {
+	String cpu;
+	int ram;
+	int hdd;
+	
+	public Computer() {
 	}
 
-	public String askHJ(User u) {
-		System.out.println("Ȧ? ¦? : ");
-		String answer = u.answer2();
-		return answer;
+	public Computer(String name, int price, String cpu, int ram, int hdd) {
+		super(name, price);
+		this.cpu = cpu;
+		this.ram = ram;
+		this.hdd = hdd;
 	}
 	
-	public void computerNum() {
-		
+	@Override
+	public void printInfo() {
+		super.printInfo();
+		System.out.printf("CPU	: %s\n", cpu);
+		System.out.printf("RAM	: %dGB\n", ram);
+		System.out.printf("HDD	: %dGB\n", hdd);
 	}
-
 }

@@ -1,12 +1,11 @@
-
-public class Mask {
-	String maskName;
-	String store;
-	int cost;
+// Mask is a Product2
+public class Mask extends Product2{
+	public Mask() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	public void printMaskInfo() {
-		System.out.println("마스크 이름 : " + this.maskName);
-		System.out.println("구매처 : " + store);
-		System.out.println("가격 : " + cost);
+	//Product2(name, price)와 같은 생성자 필요
+	public Mask(String name, int price) {
+		super(name,price);
 	}
 }
