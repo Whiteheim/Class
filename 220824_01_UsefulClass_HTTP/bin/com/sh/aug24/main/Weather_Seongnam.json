@@ -1,0 +1,43 @@
+{
+	"coord": {
+		"lon": 127.1378,
+		"lat": 37.4386
+	},
+	"weather": [
+		{
+			"id": 804,
+			"main": "Clouds",
+			"description": "온흐림",
+			"icon": "04d"
+		}
+	],
+	"base": "stations",
+	"main": {
+		"temp": 28.61,
+		"feels_like": 29.62,
+		"temp_min": 25.37,
+		"temp_max": 28.61,
+		"pressure": 1008,
+		"humidity": 54
+	},
+	"visibility": 10000,
+	"wind": {
+		"speed": 0.51,
+		"deg": 10
+	},
+	"clouds": {
+		"all": 100
+	},
+	"dt": 1661321518,
+	"sys": {
+		"type": 1,
+		"id": 5509,
+		"country": "KR",
+		"sunrise": 1661288090,
+		"sunset": 1661336010
+	},
+	"timezone": 32400,
+	"id": 1897000,
+	"name": "Seongnam-si",
+	"cod": 200
+}
