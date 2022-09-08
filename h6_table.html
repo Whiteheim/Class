@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+		table
+			기본 : <tr>, <th>, <td>
+			속성 : border(테두리), width(가로), height(세로) (table)
+					align(x축), valign(y축) (글자 정렬 방법, td/th사용시 함께 사용)
+					colspan(열), rowspan(행)(칸 합병, td에서 사용)
+	 -->
+	 <table border="1" width="300px" height="300px">
+	 	<tr> 				<!-- Table Row -->
+	 		<td>1</td>		<!-- Table Data cell -->
+	 		<th>2</th>		<!-- Table Header cell -->
+	 	</tr>	
+	 	<tr> 
+	 		<td>3</td>
+	 		<td>4</td>
+	 	</tr>
+	 </table>
+	 	
+	 	<hr>
+	 	
+	 <table border="1" width="300px" height="450px">
+	 <tr>
+	 	<td align="center" valign="middle">ㄱ</td>
+	 	<td align="center" valign="top">ㄹ</td>
+	 </tr>
+	 <tr>
+	 	<td align="center" valign="top">ㄴ</td>
+	 	<td align="center" valign="bottom">ㅁ</td>
+	 </tr>
+	 <tr>
+	 	<td align="right" valign="top">ㄷ</td>
+	 	<td align="left" valign="bottom">ㅂ</td>
+	 </tr>
+	 </table>	
+	 
+	 <hr>
+	 
+	 <table border="1" width="300px" height="300px">
+	 <tr>
+	 	<td colspan="2">1</td>
+	 	<td rowspan="2">3</td>
+	 </tr>
+	 <tr>
+	 	<td rowspan="2">4</td>
+	 	<td>5</td>
+	 </tr>
+	 <tr>
+	 	<td colspan="2">8</td>
+	 </tr>
+	 </table>
+	
+	 <hr>
+	<table border="1" width="300px" height="300px">
+	<tr>
+		<td colspan="2">1</td>
+		<td rowspan="2">2</td>
+	</tr>
+	<tr>
+		<td rowspan="2">4</td>
+		
+		<td align="center" valign="middle" width="100px" height="100px">
+		<table border="1" width="100px" height="100px">
+        	<tr>
+        		<td></td>
+        		<td></td>
+        	</tr>
+        	<tr>
+        		<td></td>
+        		<td></td>
+        	</tr>
+		
+		</table>
+		
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">8</td>
+	</tr>
+	
+	
+	</table>
+		 
+	 
+	 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
