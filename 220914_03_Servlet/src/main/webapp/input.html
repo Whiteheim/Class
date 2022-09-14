@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>회원가입</title>
+<link rel="stylesheet" href="css/input.css">
+</head>
+<body>
+	<!-- 
+		회원가입 페이지
+		ID - input
+		PW - input
+		성별 - input
+		지역
+			 <select>
+			 	<option>1</option>
+			 	<option>2</option>
+			 	<option>3</option>
+			 	<option>4</option>
+			 </select>
+		취미 - 복수선택 가능
+		자기소개 - textarea
+		
+		가입버튼을 누르면 -> 입력한 정보들이 새로운 페이지에 뜰 수 있도록 설정
+	 -->
+	 <table class="entire">
+	 <tr>
+	 <td>
+	<h1 id="title" align="center">☆즉시가입★</h1>
+	<h1 id="title" align="center">$무#료@쿠%폰&증*정^</h1>
+	<form action="JoinACreat" method="POST">
+		<table>
+			<tr>
+				<td align="center">ID :</td>
+				<td><input name="id" type="text" placeholder="아이디 입력 (영문)">
+				</td>
+			</tr>
+			<tr>
+				<td align="center">PW :</td>
+				<td><input name="pw" type="password"
+					placeholder="대소문자 숫자 특수기호 포함 8~15자"></td>
+			</tr>
+		</table>
+	</form>
+	<form action="JoinACreat">
+		<table>
+			<tr>
+				<td align="left">성별 :</td>
+				<td align="center"><input type="radio" checked="checked" name="gender"
+					value="남"> 남 <input type="radio" name="gender" value="여">
+					여 <input type="radio" name="gender" value="비공개"> 비공개</td>
+			</tr>
+			<tr>
+				<td>지역 :</td>
+				<td align="center"><select name="location">
+						<option value="서울">서울</option>
+						<option value="경기">경기</option>
+						<option value="강원">강원</option>
+						<option value="충청">충청</option>
+						<option value="전라">전라</option>
+						<option value="경상">경상</option>
+						<option value="제주">제주</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>취미 :</td>
+				<td align="center"><input type="checkbox" value="음악감상"> 음악감상 <input name="hobby"
+					type="checkbox" value="영화"> 영화 <br> <input
+					name="hobby" type="checkbox" value="공연"> 공연 <input
+					name="hobby" type="checkbox" value="독서"> 독서 <input
+					name="hobby" type="checkbox" value="게임"> 게임</td>
+			</tr>
+			<tr>
+				<td align="center">자기소개 :</td>
+				<td><textarea name="introduce" placeholder="자기소개"
+						maxlength="20px"></textarea></td>
+			</tr>
+		<tr>
+		<td align="center" colspan="2">
+		<button>가입하기</button>
+		</td>
+		</tr>
+		</table>
+			</form>
+	 </table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>입력하세요</title>
+</head>
+<body>
+	 <form action="Output" method="POST"> <!-- method 기본값은 GET방식 -->
+		입력 : <input name="a">
+		<hr>
+		<button>Output으로 가기</button> <br><br>
+		<input type="submit" value="기본값"> <br><br>
+		<input type="reset">
+
+<!--  GET방식 -->
+<!-- 	<form action="Output">
+		입력 : <input name="a">
+		<hr>
+		<button>Output으로 가기</button> <br><br>
+		<input type="submit" value="기본값"> <br><br>
+		<input type="reset">
+ -->		<!-- 
+			form속에 있는
+				기본값 : <input type="submit"> 누르면
+				변경값 : 버튼으로 된 무엇이든 누르면 
+						<input type="button" or "image",...>
+						cf) input type="reset"은 제외 
+			action 속성에 입력한 쪽으로 요청
+		 -->
+	</form>
+</body>
+</html>
