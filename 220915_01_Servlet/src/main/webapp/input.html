@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+		파일처리 
+		1) 파일이 업로드가 될 폴더
+		2) 파일 처리 시 무조건 POST방식 사용 
+			(주소에 데이터를 담은 GET방식 요청이 파일을 소화해내지 못함)
+		3) 기존 시스템이 글자는 인코딩, 디코딩 처리 후 전송 가능
+						 파일은 인코딩 불가
+			-> 다른 방식(cos.jar)으로 인코딩 하여 전송 / 디코딩 하여 받아옴
+			cos.jar -> WEB-INF - lib 폴더에 붙여넣기
+	 -->
+	 <!-- enctype="multipart/form-data" 
+	 	(인코딩 타입)
+	 		<form> 요소가 파일이나 이미지를 서버로 전송할 때 사용!
+	 -->
+	 <form action="Output" method="post" enctype="multipart/form-data">
+	 	제목 <input name="title"> <p>
+	 	사진 <input type="file" name="photo"> <p>
+	 	기타 <input type="file" name="etc"> <p>
+	 	<hr>
+	 	<button>확인</button>
+	 </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
