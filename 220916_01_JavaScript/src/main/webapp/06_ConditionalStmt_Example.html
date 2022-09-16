@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// 자바 스크립트의 영역
+	/* function donTouch() {
+		alert('내가 누르지 말랬지');
+	} */
+	// 1. 버튼 3개를 추가해서 각각 '100원', '500원', '1000원' 텍스트 기입
+	// 2. 각 버튼에 기능 추가
+	// 3. 돈이 	500원 미만이면 '선택 가능한 음료 없음'
+	//	  	   	500원 이상이면 '콜라 선택 가능'
+	//		   	700원 이상이면 '콜라, 사이다 선택 가능'
+	//		   	1000원 이상이면 '콜라, 사이다, 닥터페퍼 선택 가능'
+	//			2000원 이상이면 '콜라, 사이다, 닥터페퍼, 맥주 선택 가능'
+	//			3000원 이상이면 '콜라, 사이다, 닥터페퍼, 맥주, 소주 선택가능'
+	//				=> alert로 출력
+	// 4. 쌓이는 돈은 log로 확인
+	let money = 0;
+	function plusMoney(i) {
+		money = money + i;
+		console.log("현재금액" + money + "원");
+		insertCoin();
+	}
+	function insertCoin() {
+		if (money >= 3000) {
+			alert("콜라, 사이다, 닥터페퍼, 맥주, 소주 선택가능");
+		} else if (money >= 2000) {
+			alert("콜라, 사이다, 닥터페퍼, 맥주 선택가능");
+		} else if (money >= 1000) {
+			alert("콜라, 사이다, 닥터페퍼 선택가능");
+		} else if (money >= 700) {
+			alert("콜라, 사이다 선택가능");
+		} else if (money >= 500) {
+			alert("콜라 선택가능");
+		} else {
+			alert("음료 선택 불가");
+		}
+	}
+	function getBack() {
+		alert("ㄷ..돌려드리겠습니다");
+		money = 0;
+		console.log("현재금액" + money + "원");
+	}
+</script>
+</head>
+<body>
+	<!-- <button onclick="donTouch();">누르지마</button> -->
+	<div>콜라 : 500원</div>
+	<div>사이다 : 700원</div>
+	<div>닥터페퍼 : 1000원</div>
+	<div>맥주 : 2000원</div>
+	<div>소주 : 3000원</div>
+
+	<hr>
+	<button onclick="insertCoin();">투입</button>
+	<br>
+	<button onclick="plusMoney(100);">100원</button>
+	<button onclick="plusMoney(500);">500원</button>
+	<button onclick="plusMoney(1000);">1000원</button>
+	<br>
+	<button onclick="getBack();">안마실래</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

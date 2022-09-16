@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// function 활용 / 반복문 활용
+	// 행의 개수, 열의 개수를 입력한 뒤 버튼을 누르면
+	// 행 x 열 의 테이블이 만들어 지고,
+	// 각 td들에 숫자가 카운팅 되어서 값이 나오게 만들기
+	// document.write();로
+
+	function createTable() {
+		let row = prompt("행 개수를 입력하세요");
+		let col = prompt("열 개수를 입력하세요");
+		alert(row + "x" + col + "의 Table을 생성합니다.");
+
+		let count = 1;
+		
+		document.write("<table border ='1'>");
+		for (var i = 0; i < col; i++) {
+			document.write("<tr height='50px'>");
+			for (var j = 0; j < row; j++) {
+				document.write("<td width='50px' align='center'>");
+				document.write(count);
+				document.write("</td>");
+				count++;
+			}
+			document.write("</tr>");
+		}
+		document.write("</table>");
+	}
+	// document.write() 메소드는 웹 페이지가 로딩될 때 실행되면
+	// 웹페이지에 가장 먼저 데이터를 출력
+	// => 대부분 테스트 용도 or 디버깅 용도로 사용
+	// 중간에 document.write() 메소드가 실행이 되면
+	// 웹페이지 내에 먼저 로딩된 모든 데이터를 지우고 자신의 데이터를 출력함
+	
+</script>
+</head>
+<body>
+	<h1>자동 테이블 생성기 + 자동 숫자 카운트</h1>
+	<button onclick="createTable();">테이블 생성</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
