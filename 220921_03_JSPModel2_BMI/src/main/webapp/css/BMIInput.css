@@ -1,0 +1,127 @@
+@charset "EUC-KR";
+
+@font-face {
+	font-family: "Imsoso";
+	src: url("Imsoso.ttf");
+}
+
+body {
+	background-image: url("winter.jpg");
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+#bmiTbl {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	background-color: #FF999930;
+	width: 700px;
+	height: 700px;
+	font-family: "Imsoso";
+	border: white solid 5px;
+	border-radius: 10px;
+}
+
+#bmiTbl th {
+	font-family: "Imsoso";
+	font-size: 30pt;
+	color: teal;
+	text-shadow: white 3px 5px 5px;
+}
+
+#bmiTbl td {
+	width: 50%;
+	font-family: "Imsoso";
+	font-size: 20pt;
+	font-weight: 600;
+	text-align: center;
+	color: teal;
+	text-shadow: white 3px 5px 5px;
+}
+
+#bmiTbl .textType {
+	margin-bottom: auto;
+	outline: none;
+	text-align: center;
+	border: white solid 3px;
+	border-radius: 5px;
+	background-color: transparent;
+	font-size: 15pt;
+	font-family: "Imsoso";
+}
+
+#bmiTbl .textType::focus {
+	font-size: 15pt;
+	font-family: "Imsoso";
+}
+
+#bmiTbl .textType::placeholder {
+	color: teal;
+	font-weight: 500;
+}
+
+#bmiTbl .photoType {
+	margin-left: auto;
+	margin-right: auto;
+	font-family: "Imsoso";
+	color: teal;
+	font-size: 15pt;
+	width: 230px;
+}
+
+#bmiTbl button {
+	background-color: transparent;
+	border: white;
+	font-family: "Imsoso";
+	font-size: 20pt;
+	font-weight: 600;
+	text-shadow: white 3px 5px 5px;
+	cursor: pointer;
+}
+
+#bmiTbl button:hover {
+	text-decoration: underline;
+	font-family: "Imsoso";
+	color: black;
+	font-size: 20pt;
+}
+
+
+input[type=file]::file-selector-button {
+	border: white solid 5px;
+	border-radius: 10px;
+	font-family: "Imsoso";
+	background-color: transparent;
+	cursor: pointer;
+	color: teal;
+}
+
+input[type=file]::file-selector-button:hover{
+	background-color: black;
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

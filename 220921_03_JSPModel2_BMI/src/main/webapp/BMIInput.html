@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>또MI 검사</title>
+<script type="text/javascript" src="js/BeaverValidChecker.js"></script>
+<script type="text/javascript" src="js/Sep19_Check.js"></script>
+<link rel="stylesheet" href="css/BMIInput.css">
+<!-- 유효성검사, css -->
+</head>
+<body>
+	<!-- table + form
+		BMI 검사
+		필요한 정보 + 사진
+		이름 키 몸무게 사진
+	 -->
+	 <!-- 그 정보를 가지고 계산을 해서 결과를 출력... => Servlet -->
+	 <form action="HomeController" name="bmiForm" enctype="multipart/form-data"
+	 	method="post" onsubmit="return bmiCheck();">
+	 	<table id="bmiTbl">
+	 		<tr>
+	 			<th colspan="2">BMI 검사</th>
+	 		</tr>
+	 		<tr>
+				<td class="td1">이름</td>
+				<td>
+					<input name="name" placeholder="필수" class="textType"
+					maxlength="10" autofocus="autofocus" autocomplete="off">
+				</td>
+	 		</tr>
+	 		<tr>
+				<td class="td1">키</td>
+				<td>
+					<input name="height" placeholder="cm" 
+					class="textType" autocomplete="off">
+				</td>
+	 		</tr>
+	 		<tr>
+				<td class="td1">몸무게</td>
+				<td>
+					<input name="weight" placeholder="kg" 
+					class="textType" autocomplete="off">
+				</td>
+	 		</tr>
+	 		<tr>
+				<td class="td1">사진</td>
+				<td>
+					<input name="photo" type="file" class="photoType" id="photo">
+				</td>
+	 		</tr>
+	 		<tr>
+	 			<td colspan="2" align="center"><button>계산하기</button></td>
+	 		</tr>
+	 	</table>
+	 </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
