@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	<bean id="d" class="com.sh.sep29.Dog"></bean>
+	<bean id="d2" class="com.sh.sep29.Dog">
+		<property name="name" value="왈왈이"></property>
+		<property name="age" value="40"></property>
+	</bean>
+	
+	<bean id="d3" class="com.sh.sep29.Dog">
+		<constructor-arg value="멍멍이"></constructor-arg>
+		<constructor-arg value="215"></constructor-arg>
+	</bean>
+	
+	
+	
+	<bean id="b" class="com.sh.sep29.Book"></bean>
+	<bean id="b2" class="com.sh.sep29.Book">
+		<property name="title" value="책책책"></property>
+		<property name="price" value="1234500"></property>
+	</bean>
+	<bean id="b3" class="com.sh.sep29.Book">
+		<constructor-arg value="책책"></constructor-arg>
+		<constructor-arg value="12345"></constructor-arg>
+	</bean>
+</beans>
