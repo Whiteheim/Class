@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heim.oct04.test.TestMapper">
+	<insert id="regTest" parameterType="com.heim.oct04.test.Test">
+		insert into test values (#{t_name}, #{t_date})
+	</insert>
+	
+	<select id="getAllTest" resultType="com.heim.oct04.test.Test">
+		select * from test order by t_date
+	</select>
+</mapper>
