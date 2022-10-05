@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	h1{
+		color: red;
+		transition: all 0.5s ease-out;
+	}
+</style>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(function () {
+		
+		// btn1을 누르면 h1의 글자색이 teal
+		// $(선택자).css("속성명", "값");
+ 		// $("#btn1").click(function () {
+		//	 $("h1").css("color", "teal");
+			
+		// });
+		// h1의 배경색이 pink로 바뀌도록 추가
+		$("#btn1").click(function () {
+		//	$("h1").css("color", "teal");
+		//	$("h1").css("background-color", "pink");
+		
+		// 추가적으로 css를 엮을 수 있지만 추천x
+			$("h1").css("color", "teal").css("background-color", "pink");
+		});
+		
+		// btn2를 누르면 현재 h1의 글자 색을 alert창에 출력
+		$("#btn2").click(function () {
+			let c = $("h1").css("color");
+			alert(c);
+		});
+		
+		// btn3을 누르면 input에 입력한 값 대로 h1의 글자 크기가 바뀌도록
+		$("#btn3").click(function () {
+			let d = $("#i").val();
+			$("h1").css("font-size", d + "pt");
+		});
+		
+		// btn4를 누르면 input의 가로길이를 input에 값으로 출력
+		$("#btn4").click(function () {
+			let e = $("#i").css("width");
+			$("#i").val(e);
+		});		
+		
+	});
+	
+	
+</script>
+</head>
+<body>
+	<h1>아무말아무말아무말</h1>
+	<hr>
+	<button id="btn1">btn1</button>
+	<button id="btn2">btn2</button>
+	<hr>
+	<input id="i">
+	<button id="btn3">btn3</button>
+	<button id="btn4">btn4</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

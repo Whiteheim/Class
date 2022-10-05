@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	// ㅋㅋㅋㅋ : 글자색 - green / 배경 - red
+	// ㅎㅎㅎㅎ : 글자색 - yellow / 배경 - blue
+	// ㅁㅁㅁㅁ : 글자색 - pink / 배경 - teal
+
+	$(function() {
+		let arrobj = [ {
+			color : "green",
+			background_color : "red"
+		}, {
+			color : "yellow",
+			background_color : "blue"
+
+		}, {
+			color : "pink",
+			background_color : "teal"
+		} ];
+
+		$("td").each(function(i, t) {
+			$(t).css("color", arrobj[i].color);
+			$(t).css("background-color", arrobj[i].background_color);
+		});
+
+		// setInterval()을 이용해서
+		// 처음사진 ~ 끝사진 까지 보여주기
+		// 마지막 사진 출력 -> 다시 처음부터 시작
+		let i = 0;
+		setInterval(function() {
+			i++;
+			if (i == 8) {
+				i = 1;
+			}
+			$("img").attr("src", "img/ski" + i + ".png")
+		}, 300);
+
+	});
+</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>ㅋㅋㅋㅋ</td>
+		</tr>
+		<tr>
+			<td>ㅎㅎㅎㅎ</td>
+		</tr>
+		<tr>
+			<td>ㅁㅁㅁㅁ</td>
+		</tr>
+	</table>
+	<hr>
+	<img alt="스키" src="img/ski1.png">
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	
+	// $(선택자).이벤트(콜백 함수);
+	/* 
+	$(document).ready(function init() { // 이(문서). 준비가 끝나면 (자동 호출 될 함수);
+		alert("준비완료");
+	}) 
+	*/
+	/* 
+	$(function () {
+		alert("준비완료");
+	}); 
+	*/
+	// CSS 선택자 이용
+	
+	$(function() {
+		$("h1").click(function () {
+			$("h2").click(function() {
+			alert("ㅎㅇ");	// h1 -클릭-> h2 -클릭-> alert
+			});
+		});
+
+	// 스위치 기능
+		let b = false;
+		$("h3").click(function() {
+			b = !b;
+			alert(b);
+		});
+		
+		let iInput = $("#i");	// 선택자의 id가 i 인것
+		//alert(iInput);
+		
+		// html의 <button>에
+		// 클릭 이벤트가 발생하면 콜백함수가 자동으로 호출되도록 연결
+		$("button").click(function () {
+			alert(iInput.val());
+		});
+		
+		// 이벤트 하나에 함수를 여러개 연결 가능
+		
+		
+		
+		
+		
+	});
+</script>
+</head>
+<body>
+	<h1>오늘 너무너무너무너무너무 피곤합니다</h1>
+	<h2>하지만 벌써 수요일입니다</h2>
+	<h3>이틀밖에 남지 않았습니다</h3>
+	<hr>
+	<input id="i">
+	<button>출력</button>
+	<hr>
+	<button>Print</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

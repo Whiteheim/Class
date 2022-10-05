@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// 인터프리터 방식의 언어 : 실행시키면 위에서부터 한줄 씩 기계어로 번역해서 실행
+	//	(cf: 컴파일 방식의 언어 : 실행 시키면 코드 전체를 한번에 번역해서 실행)
+	// 전체를 번역하는 컴파일 방식의 부재 -> 에러 표시 x -> 잘못된 경우 에러 처리가 힘듦
+	
+	// DOM객체에 onXXX 이벤트를 연결
+	let iInput = null;
+	function init() {
+		iInput = document.getElementById("i");
+		alert(iInput);
+	}
+	
+	// 버튼을 하나 만들어서 print() 함수와 연결
+	//	-> 버튼을 한 번 눌렀을 때 (onclick)
+	function print() {
+		alert(iInput.value);
+	}
+	
+	// 유효성 검사 / VaildChecker.js
+	//		=> 유효성 검사를 편하게 하기 위해 함수를 정리해 둠
+	// 웹페이지 이벤트 처리 / jQuery.js
+	//		=> JS자체를 편하게 사용 가능하도록 함수로 정리해 둠
+	
+</script>
+</head>
+<body onload="init()"> <!-- onload : 실행 시 페이지가 모두 로딩이 된 후 
+							지정한 (init();) 함수 호출 -->
+	<input id="i">
+	<button onclick="print();">Print</button>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

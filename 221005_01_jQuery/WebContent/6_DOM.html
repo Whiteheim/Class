@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+
+	$(function () {
+		$("#b1").click(function () {
+			// a 태그로 이루어진 DOM객체 속 text 바꾸기
+			// $("a").text("유튜브");
+			// text()의 괄호 안에 값을 넣지 않으면 기존 값 유지
+			// let t = $("a").text();
+			// alert(t);
+			
+			// .text() 와 .html()
+			// $("a").html("유튜브");
+			
+			// $("a").text("<b>유튜브</b>"); -> 태그 적용 X
+			$("a").html("<b>유튜브</b>"); //-> 태그 적용 O
+			
+			// .html() : 새로운 html 요소로 변경 할 수 있음
+		});
+		
+		$("#b2").click(function() {
+			$("a").attr("href", "http://www.youtube.com");
+			
+			// a태그에 css를 주고싶은데 부여 해야할 것이 많다면 id도 부여 가능
+			$("a").attr("id", "t");
+			
+			// 속성 지우기
+			$("a").removeAttr("class"); // "class"가 가지고있는 속성 지우기
+		});
+		
+		let n = 0;
+		$("#b3").click(function () {
+			n++;
+			// $("css선택자") or $("변수명") : 기존의 것을 선택
+			// $("DOM객체") : DOM객체 생성
+			// marquee DOM객체 추가하기
+			
+			let m = $("<marquee></marquee>").text("test" + n + "try");
+			
+			// marquee에 속성 추가 
+			// behavior : marquee의 스크롤 방식 설정
+			//		scroll		: 한쪽 방향으로만 진행 (기본값)
+			//		alternate	: 왕복
+			m.attr("behavior", "alternate");
+			
+			// direction : 스크롤 방향 설정
+			//		left (기본값), right, up, down
+			m.attr("direction", "right");
+		
+		// 요소 추가하기
+		//	기존 요소 내부 추가 - append, prepend
+		 $("div").append(m); // 선택된 요소의 마지막에 내용 추가
+		// $("div").prepend(m); // 선택된 요소의 첫부분에 내용 추가
+		//	기존 요소 외부 추가 - before, after
+		// $("div").before(m);
+		// $("div").after(m);
+		
+		});
+		
+		$("#b4").click(function () {
+			// remove() : DOM 객체 + 하위요소들 전부 제거
+			//$("div").remove();
+			// empty() : DOM 객체의 하위 요소들 제거
+			$("div").empty();
+		})
+		
+		$("button").click(function() {
+			let v = $("#menu").val();
+			let p = $("#price").val();
+			
+			let td1 = $("<td></td>").text(v);
+			let td2 = $("<td></td>").text(p);
+			let tr = $("<tr></tr>").append(td1, td2);
+			
+			$("table").append(tr);
+			$("#menu").val("");
+			$("#price").val("");
+		});
+		
+	})
+</script>
+<style type="text/css">
+	.t2 {
+		font-size: 30pt;
+	}
+	
+	#t {
+		background-color: pink;
+		color: white;
+	}
+	
+	div {
+		border: pink solid 3px;
+		width: 300px;
+		height: 300px;
+	}
+</style>
+</head>
+<body>
+	메뉴 : <input id="menu"> <p>
+	가격 : <input id="price"> <p>
+	<button>등록</button>
+	<hr>
+	<table border="">
+		<tr>
+			<th>메뉴명</th>
+			<th>가격</th>
+		</tr>
+	</table>
+	<hr>
+	<a href="http://www.naver.com" class="t2">네이버</a>
+	<hr>
+	<button id="b1">내용 수정</button> <p>
+	<button id="b2">속성 수정</button> <p>
+	<button id="b3">DOM객체 수정</button> <p>
+	<button id="b4">DOM객체 삭제</button> <p>
+	<div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
