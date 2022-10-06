@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Keyboard Event</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(function () {
+		
+		// input에서 keyboard를 누르면 >> 누른 순간에 이벤트 발생
+		/* $("input").keydown(function() {
+			$("h1").text("키보드를 누르는 동안");
+			return false; // 기능을 발생하기 전에 원래의 기능을 못하도록 막을 수 있음
+						  // 입력이 안됨
+		}); */
+		
+		// 특정 키를 눌렀을 때 이벤트 발생
+		$("input").keydown(function(e) {
+			$("h1").text(e.keyCode); // 키보드 아스키 값 : 키에 있는 고유 값
+			
+			if (e.keyCode == 13) { 			// enter 키 : 13
+				alert("ddd"); 
+			} else if (e.keyCode == 65) { 	// a키 : 65
+				return false;				// a키 사용 불가
+			} else if (e.keyCode == 83) {	// s키 : 83
+				let t = $("input").val();
+				$("input").val(t + "ㅋ");
+				return false;				// s키 사용 불가
+			}
+		});
+		
+		// keyboard를 누른 후 떼었을 때
+		$("input").keyup(function () {
+			$("h1").text("손 떼");	
+		});
+		
+		// html에도 keydown 이벤트 설정 가능
+		let l = 0;
+		let u = 0;
+		$("html").keydown(function(e) {
+			/* if (e.keyCode == 116) {
+				return false;
+			} */
+			
+			if (e.keyCode == 39) { // 오른쪽 방향키
+				l += 5; // 오른쪽 방향키 누를 때 마다 값이 5씩 늘어나도록
+				$("h2").css("left", l + "px");
+			} else if (e.keyCode == 37) {
+				l -= 5;
+				$("h2").css("left", l + "px");
+			} else if (e.keyCode == 32) {
+				u -= 15;
+				$("h2").css("top", u + "px");
+			}
+		});
+		$("html").keyup(function(e) {
+			if (e.keyCode == 32) {
+				u = 15;
+				$("h2").css("top", u + "px");
+			}
+		});		
+		
+	})
+</script>
+<style type="text/css">
+	h2 {
+	/* 기본은 고정이지만 좌표 조절 가능 */
+		position: fixed;
+	}
+</style>
+</head>
+<body>
+	<h2>텍스트</h2>
+	<input>
+	<h1></h1>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

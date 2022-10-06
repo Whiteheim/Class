@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mouse Event</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$("div").mousedown(function() {
+			$("h1").text("mousedown");			
+		});
+		
+		$("div").mouseup(function() {
+			$("h1").text("mouseup")
+		});
+		
+		$("div").mouseenter(function() {
+			$("h1").text("mouseenter")
+		});
+		
+		$("div").mouseleave(function() {
+			$("h1").text("mouseleave")
+		});
+		
+		// DOM객체의 정확한 좌표 표기 (html의 여백으로 인해 좌표가 (0,0)이 아님)
+		// HTML기준 div 좌표
+		let divX = $("div").offset().left; 	// 선택자의 정확한 x 좌표
+		let divY = $("div").offset().top;	// 선택자의 정확한 y 좌표
+		alert(divX + "," + divY);
+		
+		$("div").mousemove(function(e) {
+			// 마우스 커서의 좌표 표시 (html 기준)
+			// $("h2").text("mousemove : " + e.pageX + ", " + e.pageY);
+			
+			// div 기준  마우스 포인터 좌표
+			let x = e.pageX - divX;
+			let y = e.pageY - divY;
+			$("h2").text("좌표 : " + x + ", " + y);
+			
+		});
+		
+		$("html").mousemove(function (e) {
+			$("img").css("left", e.pageX + 10 + "px");
+			$("img").css("top", e.pageY + 15 + "px");
+		});
+		
+		// 마우스 우클릭 -> 메뉴 나오지 않도록
+		// document : html을 가리키는 내장 객체
+		$(document).contextmenu(function() {	// 우클릭 시 브라우저의 메뉴가 나오려고 하는 시점
+			return false;					// 우클릭시 메뉴창 나오지 않게		
+		});
+		
+		// mousedown 이벤트 발생시 / 마우스 우클릭
+		// 클릭한 위치에 테이블이 생겼다가 지정한 시간 뒤에 사라지면서
+		// 지정한 시간 뒤에 테이블이 원위치로 돌아감
+		$("html").mousedown(function(e) {
+			if (e.button == 2) {	// 버튼의 종류가 마우스 우클릭 
+									// 좌클릭은 0
+				// 클릭시 테이블 등장
+				$("table").css("opacity", "1");
+				$("table").css("left", e.pageX + "px");
+				$("table").css("top", e.pageY + "px");
+			}
+			
+			setTimeout(() => {
+				$("table").css("opacity", "0");
+				setTimeout(() => {
+					$("table").css("left", "-100px");
+					$("table").css("top", "-100px");
+				}, 300);
+			}, 3000);
+			
+		});
+		
+	});
+</script>
+<style type="text/css">
+	div {
+		border: pink solid 3px;
+		width: 200px;
+		height: 200px;
+	}
+	
+	img {
+		position: fixed;
+	}
+	
+	body {
+		cursor: none;
+	}
+	
+	table {
+		position: fixed;
+		opacity: 0;
+		top: -100px;
+		left: -100px;
+		transition: opacity 0.3s ease-in;
+	}
+</style>
+</head>
+<body>
+	<div></div>
+	<h1></h1>
+	<h2></h2>
+	<img alt="별" src="sparkles.png">
+	<table border="1">
+		<tr>
+			<td><a href="http://www.naver.com">네이버</a></td>
+		</tr>
+		<tr>
+			<td><a href="http://www.google.com">구글</a></td>
+		</tr>
+		<tr>
+			<td><a href="http://www.youtube.com">유튜브</a></td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
