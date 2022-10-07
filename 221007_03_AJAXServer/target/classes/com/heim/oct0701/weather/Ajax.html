@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+
+
+	// AJAX - JavaScript -> 웹 브라우저
+	//	브라우저의 동일출처정책에 위반
+	//	AJAX는 다른사람의 데이터를 가져올 수 없음
+	//		동일 출처 정책
+	//				: 웹과 상호작용을 하는 JavaScript 코드에 대한 보안정책
+	
+	// Cross-Domain AJAX - 브라우저의 동일출처정책을 뚫어버리는 방법
+	//		다른사람이 만든 데이터를 가져오는 AJAX
+	
+	// 서버측에서 다른 사람에게 데이터를 제공
+	//		1. JSONP (JSON with Padding)
+	//			임의로 JSON의 형태를 변형시켜 공유하는 방법
+	//		2. 응답 헤더 : Access-Control-Allow-Origin 세팅
+	//	=>> ErrorController에서 설정
+	
+	// error.json 가져오기
+	$(function () {
+		
+	$.getJSON("http://localhost/oct07/error.getJSON", function(a) {
+		//alert(JSON.stringify(a));
+	});
+	});
+	
+	// 서버측에서 CrossDomain 허용 X -> 클라이언트가 직접 작업
+	//		3. proxy 서버
+	//			서버와 클라이언트 사이 중계기능
+	//				=> IP주소를 우회해서 사용하는 것
+	//			AJAX로는 기상청 데이터를 가져올 수 없음
+	//			JAVA로는 가능
+	
+	$.ajax({
+		url: "https://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=4113554500",
+		success: function(a) {
+				alert(a);
+		}
+		
+	});
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heim.oct07.error.ErrorMapper">
+	<select id="getAllError" resultType="com.heim.oct07.error.Error">
+		select * from error order by e_where
+	</select>
+		<!-- 
+			문자열 포함 검색
+				oracle : %문자열%
+				mybatis : '%'||문자열||'%'
+		 -->
+	<select id="getSearchError" resultType="com.heim.oct07.error.Error"
+		parameterType="com.heim.oct07.error.Error">
+		select * from error where e_what like '%'||#{e_what }||'%'
+	</select>
+</mapper>
