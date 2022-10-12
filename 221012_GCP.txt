@@ -1,0 +1,422 @@
+같은 작업을 반복했을 때 같은 이름의 파일은 자동으로 덮어쓰기로 복사해옴
+
+- i = iteractive
+
+현재 계정에서 삭제 권한을 가진 파일만 이동 가능
+
+mv /폴더/폴더 * 		폴더 내의 전체 파일 이동
+mv /폴더/폴더 .*		폴더 내의 전체 파일 이동 (숨김파일 포함)
+
+Shell 명령어
+	- 리눅스 명령어 해석기
+	ls --- kernel ---> CPU
+	kernel : 이진수로 인식 
+	ls --- shell ---- kernel ----> CPU
+	       └ 문자를 이진수로 변환
+	종류 : bash, c , ... etc
+
+file 파일명 		파일 정보
+file discriptor		열려있는 파일에 대한 식별자
+
+ls -al : 숨김파일 표시(a) + 리스트로 표시(l)
+
+Meta Character : 메타 문자 (Shell 이 특별한 의미로 해석하는 문자)
+ 	일반적으로 사용되는 특수문자들 (각각의 기능을 가짐)
+	cat > a.txt 	a.txt 파일을 생성과 동시에 입력하게 해줌
+	>		출력 방향 전환 (표준출력 -> file / redirection : 입출력 방향 재지정) / 파일이 존재 한다면 원래 있던 내용 삭제 (Overwrite)
+	>> 		원래있던 내용 포함하여 내용 입력 (append)
+	<		입력 방향 전환 (표준입력 -> file) / 입력을 키보드가 아닌 파일에서 받아들임
+	0 : 표준 입력
+	1 : 표준 출력
+	2 : 표준 에러
+	=> cat [없는파일] 2> 파일명 : 에러를 새로운 파일을 만들어 내용을 집어넣기
+	<<문자 here document . 문자열이 들어오면 입력을 닫기 (EOF, ctrl)
+
+
+root@goorm:/tmp/meta# ls
+a.txt  linux
+root@goorm:/tmp/meta# touch linux
+root@goorm:/tmp/meta# ls
+a.txt  linux
+root@goorm:/tmp/meta# touch linux 1> c.txt
+root@goorm:/tmp/meta# ls
+a.txt  c.txt  linux
+root@goorm:/tmp/meta# cat c.txt
+root@goorm:/tmp/meta# aaaaa
+bash: aaaaa: 명령어를 찾을 수 없음
+root@goorm:/tmp/meta# aaaaa > b.txt
+bash: aaaaa: 명령어를 찾을 수 없음
+root@goorm:/tmp/meta# ls
+a.txt  b.txt  c.txt  linux
+root@goorm:/tmp/meta# #명령이 없어도 파일이 생성됨
+
+지정한 소문자를 대문자로 바꿔출력
+root@goorm:/tmp/meta# # tr 명령 : 문자열 치환 명령어
+root@goorm:/tmp/meta# tr linux LINUX
+root@goorm:/tmp/meta# ls
+a.txt  b.txt  c.txt  linux
+root@goorm:/tmp/meta# tr linux LINUX
+hello
+heLLo
+unix
+UNIX
+lunux
+LUNUX
+
+지정한 폴더의 파일들의 소문자를 대문자로 바꿔주고 txt 파일을 만들어 그 내용을 삽입
+root@goorm:/tmp/meta# tr a-z A-Z 0< /etc/passwd 1> ./passwd.txt
+root@goorm:/tmp/meta# cat passwd.txt
+ROOT:X:0:0:ROOT:/ROOT:/BIN/BASH
+DAEMON:X:1:1:DAEMON:/USR/SBIN:/USR/SBIN/NOLOGIN
+BIN:X:2:2:BIN:/BIN:/USR/SBIN/NOLOGIN
+SYS:X:3:3:SYS:/DEV:/USR/SBIN/NOLOGIN
+SYNC:X:4:65534:SYNC:/BIN:/BIN/SYNC
+GAMES:X:5:60:GAMES:/USR/GAMES:/USR/SBIN/NOLOGIN
+MAN:X:6:12:MAN:/VAR/CACHE/MAN:/USR/SBIN/NOLOGIN
+LP:X:7:7:LP:/VAR/SPOOL/LPD:/USR/SBIN/NOLOGIN
+MAIL:X:8:8:MAIL:/VAR/MAIL:/USR/SBIN/NOLOGIN
+NEWS:X:9:9:NEWS:/VAR/SPOOL/NEWS:/USR/SBIN/NOLOGIN
+UUCP:X:10:10:UUCP:/VAR/SPOOL/UUCP:/USR/SBIN/NOLOGIN
+PROXY:X:13:13:PROXY:/BIN:/USR/SBIN/NOLOGIN
+WWW-DATA:X:33:33:WWW-DATA:/VAR/WWW:/USR/SBIN/NOLOGIN
+BACKUP:X:34:34:BACKUP:/VAR/BACKUPS:/USR/SBIN/NOLOGIN
+LIST:X:38:38:MAILING LIST MANAGER:/VAR/LIST:/USR/SBIN/NOLOGIN
+IRC:X:39:39:IRCD:/VAR/RUN/IRCD:/USR/SBIN/NOLOGIN
+GNATS:X:41:41:GNATS BUG-REPORTING SYSTEM (ADMIN):/VAR/LIB/GNATS:/USR/SBIN/NOLOGIN
+NOBODY:X:65534:65534:NOBODY:/NONEXISTENT:/USR/SBIN/NOLOGIN
+_APT:X:100:65534::/NONEXISTENT:/USR/SBIN/NOLOGIN
+MESSAGEBUS:X:101:102::/NONEXISTENT:/USR/SBIN/NOLOGIN
+SYSTEMD-NETWORK:X:102:104:SYSTEMD NETWORK MANAGEMENT,,,:/RUN/SYSTEMD/NETIF:/USR/SBIN/NOLOGIN
+SYSTEMD-RESOLVE:X:103:105:SYSTEMD RESOLVER,,,:/RUN/SYSTEMD/RESOLVE:/USR/SBIN/NOLOGIN
+SSHD:X:104:65534::/RUN/SSHD:/USR/SBIN/NOLOGIN
+USER1:X:1000:1000::/HOME/USER1:/BIN/BASH
+
+root@goorm:/tmp/meta# cat <<END
+> hello
+> unix
+> bash: 경고: here-document at line 97 delimited by end-of-file (wanted `END')
+hello
+unix
+root@goorm:/tmp/meta# cat
+hello
+hello
+gi
+gi
+hi
+hi
+
+
+root@goorm:/tmp/meta# cat <<END
+> bash: 경고: here-document at line 101 delimited by end-of-file (wanted `END')
+root@goorm:/tmp/meta# cat <<END
+> END
+root@goorm:/tmp/meta# cat <<STOP
+> hi
+> STOP
+hi
+root@goorm:/tmp/meta#
+
+
+
+pipe 명령 	: | (vertical bar)
+	pipe앞쪽의 명령 결과를 pipe뒤의 명령어의 입력으로 전달
+	pipe의 앞쪽은 출력이 가능해야하고 pipe의 오른쪽은 입력이 가능해야함
+	pipe는 명령을 조합해서 사용 가능 -> 자주 쓰임	
+
+root@goorm:/tmp/meta# touch a b
+root@goorm:/tmp/meta# ls
+a  b
+root@goorm:/tmp/meta# touch c d
+root@goorm:/tmp/meta# ls
+a  b  c  d
+root@goorm:/tmp/meta# echo hello; echo unix
+hello
+unix
+root@goorm:/tmp/meta# echo hello | echo unix
+unix
+root@goorm:/tmp/meta#
+
+passwd의 위에서 10번째 줄 까지 출력
+root@goorm:/etc# head -n 10 passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+
+passwd 파일의 내용에 번호를 붙혀서 출력
+root@goorm:/etc# cat -n passwd
+     1  root:x:0:0:root:/root:/bin/bash
+     2  daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+     3  bin:x:2:2:bin:/bin:/usr/sbin/nologin
+     4  sys:x:3:3:sys:/dev:/usr/sbin/nologin
+     5  sync:x:4:65534:sync:/bin:/bin/sync
+     6  games:x:5:60:games:/usr/games:/usr/sbin/nologin
+     7  man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+     8  lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+     9  mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+    10  news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+    11  uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+    12  proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+    13  www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+    14  backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+    15  list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+    16  irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+    17  gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+    18  nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+    19  _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+    20  messagebus:x:101:102::/nonexistent:/usr/sbin/nologin
+    21  systemd-network:x:102:104:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+    22  systemd-resolve:x:103:105:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+    23  sshd:x:104:65534::/run/sshd:/usr/sbin/nologin
+    24  user1:x:1000:1000::/home/user1:/bin/bash
+
+passwd 출력 시 10번째줄까지 번호를 붙히는 명령
+1. 각 라인에 번호를 붙여서 출력
+2. 10번째 줄 까지만 출력
+
+root@goorm:/etc# cat -n passwd | head -n 10
+     1  root:x:0:0:root:/root:/bin/bash
+     2  daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+     3  bin:x:2:2:bin:/bin:/usr/sbin/nologin
+     4  sys:x:3:3:sys:/dev:/usr/sbin/nologin
+     5  sync:x:4:65534:sync:/bin:/bin/sync
+     6  games:x:5:60:games:/usr/games:/usr/sbin/nologin
+     7  man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+     8  lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+     9  mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+    10  news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+	=> 번호를 지정한 뒤 10개까지 잘라서 출력
+		파이프 앞의 명령을 입력으로 인식
+
+ passwd 파일의 위에서 5번째, 아래서 2번째, 다시 위에서 첫번째를 번호를 붙혀 출력
+root@goorm:/etc# cat -n passwd | head -n 5 | tail -n 2 | head -n 1
+     4  sys:x:3:3:sys:/dev:/usr/sbin/nologin
+
+services 파일 500줄~ 510줄까지 출력 (번호 붙혀)
+
+root@goorm:/etc# cat -n services | head -n 510 | tail -n 11
+   500  #
+   501  linuxconf       98/tcp                          # LinuxConf
+   502  poppassd        106/tcp                         # Eudora
+   503  poppassd        106/udp
+   504  moira-db        775/tcp         moira_db        # Moira database
+   505  moira-update    777/tcp         moira_update    # Moira update protocol
+   506  moira-ureg      779/udp         moira_ureg      # Moira user registration
+   507  spamd           783/tcp                         # spamassassin daemon
+   508  omirr           808/tcp         omirrd          # online mirror
+   509  omirr           808/udp         omirrd
+   510  customs         1001/tcp                        # pmake customs server
+
+ * grep (get regular expression) 명령
+	특정 문자열을 포함하고 있는 라인을 찾기 위해 사용
+	찾는 문자열이 있는 경우 빨간색으로 표시
+<(정규) 표현식 regular expression>
+	어떤 문자열의 집합을 표시하는 텍스트 스트링.
+	일반적으로 텍스트 형식 문서에서 문자열을 찾아내고 치환하고자 할 때 많이 사용
+	vi, ex, ed, sed, grep 등에서 많이 사용
+ex) [ ] : 문자열 중 하나를 인식함
+[0-9] : 숫자 (한자리 정수)를 인식함
+[a-z] : 소문자 한 글자 인식
+[A-Z] : 대문자 한 글자 인식
+[a-zA-Z] : 대소문자 관계없이 한 글자 인식
+
+[^] : 포함하지 않은 문자열 인식
+[^A-Z] : 대문자를 제외한 문자 인식
+
+^ : 라인의 시작
+$ : 라인의 끝
+ex) "^new" : 라인에서 new로 시작하는 라인을 인식
+
+
+-i : ignore 
+root@goorm:/etc# grep -i ubuntu
+Ubuntu
+Ubuntu -> 인식
+ubuntu
+ubuntu -> 인식
+
+
+* passwd 파일에 nologin이 적힌 유저의 수 파악
+wc : word count
+
+root@goorm:/etc# grep nologin passwd | wc -l
+21
+
+
+* 파일 검색 명령어
+whereis [command(s)] : 실행파일 위치, 도움말 파일 위치
+which [command(s)] : 실행파일 위치
+
+find [path] [expression] [action] : 
+*action : 찾은 결과의 처리 방법 , 기본값은 print
+
+action 설정이 가능하기 때문에 주로 사용됨
+
+etc 안에 이름이 passwd인것들 찾기
+find /etc -name passwd
+	/etc/passwd
+	/etc/pam.d/passwd
+	/etc/cron.daily/passwd
+
+find /etc -type d
+etc 폴더에서 directory 타입 찾기
+
+파일 이름 검색 시 작은따옴표 표기 해야함
+*.확장자 : 확장자가 같은 파일 검색
+	=> * 이 메타문자로 인식되어 오류가 발생할 수 있으므로 '*.확장자'로 표기
+find /etc -name '*.conf'
+	/etc/resolv.conf
+	/etc/ldap/ldap.conf
+
+
+
+* vi 편집기
+unix 의 text모드에서 사용되는 편집기 vi(m), emacs, nano
+
+vi 편집기 모드
+	1. 명령모드 : vi 편집기 기본 모드 (편집 명령어 ex. 커서 이동 등 - 사용가능)
+	2. 입력모드 : 키보드 i, a, o, s 등을 입력 한 뒤, 입력 명령어 사용 가능 
+	3. 확장모드 (ex모드, last line 모드)
+		: 콜론 (:) 입력 후 화면 가장 아래쪽에 명령어 입력
+
+각 모드 사이의 전환
+	명령모드 => 입력모드 : 입력모드 명령어 중 하나 입력
+	입력모드 => 명령모드 : esc키 
+	입력모드 => 확장모드 : 반드시 명령보드로 전환 후 확장모드 명령어(:) 입력
+
+
+5~10라인 복사 후 맨 끝에 붙혀넣기
+vim 편집 -> 명령모드 -> 5번째 라인에서 6 yy 입력 -> 맨 끝 라인에 p 입력
+
+
+1~5 라인 복사 후 10줄 아래에 붙혀넣기
+gg-> 5yy -> 10gg -> p
+
+13~21라인 복사 후 37라인 아래에 복사
+:13,22 co 58
+
+확장모드에서 !를 먼저 입력하고 명령을 입력하면 리눅스 명령어를 실행함
+[:/단어] : 단어로 시작하는 라인의 제일 첫번째줄로 이동
+/ 단어 , ? 단어 : 단어 검색
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
