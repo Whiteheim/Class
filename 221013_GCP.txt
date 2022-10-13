@@ -1,0 +1,251 @@
+계정
+  linux system 계정
+    1. root : super user 계정, 관리자 계정. 거의 모든 권한 행사
+    2. system : login 불가, system운영상 필요한 계정
+    3. user : 시스템 운영목적이 아닌 일반 사용자를 위한 계정
+
+계정 관련 파일
+/etc/passwd , /etc/shadow , /etc/group
+  : 파일에 문제가 생기면 사용자는 정상적으로 login 하지 못할 수 있음 
+
+/etc/shadow- ,/etc/group- , /etc/passwd-
+	: 계정관련 백업파일, 원본데이터가 수정되기 전에 자동 백업
+	원본이 손상되거나 삭제되는 경우 이 파일을 이용해 복구 가능
+
+
+
+
+
+root@goorm:/etc# head -5 passwd; tail -2 passwd
+
+root:x:0:0:root:/root:/bin/bash	// 운영계정
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin 	// 시스템 계정
+sync:x:4:65534:sync:/bin:/bin/sync
+user1:x:1000:1000::/home/user1:/bin/bash
+u1:x:1001:1001::/home/u1:/bin/bash	// 사용자 계정
+
+
+passwd 파일 형식
+계정이름:암호:UID:GID:Comment:Homedirectory:shell
+
+UID : 유저의 고유 번호 (시리얼 번호)
+UID = 0 : root
+UID = 1~99 : system 계정
+UID >= 100 : 일반 계정
+
+GID : Group ID 
+
+암호 
+ x : 패스월드 필드, x라고 표기될 경우(/etc/shadow파일에 저장되었다는 의미)
+	shadow파일은 root만 읽기, 수정하기 권한이 부여됨
+
+권장하지 않는 계정
+ 연속된 숫자로 이루어진 계정 (useradd 1234)
+ 대문자가 있는 계정 	(useradd USER100)
+ 길이가 긴 계정 		(useradd useruseruseruseruser)
+ 
+권장 계정
+ 이름이나 id가 명확한 계정	(useradd gildong)
+
+계정관리 명령어
+1. 유저 생성 : useradd
+ -d : 홈디렉토리 변경
+ -s : login shell 변경
+ -e : 계정 만료일 지정
+ -c : comment 설정
+ -u : UID값 설정 (-o : 강제적용)
+
+2. 계정 정보 수정 : usermod
+ -s : login shell 변경
+ -c : comment 필드 변경
+ -e : 계정 만료일 변경
+
+3. 계정 삭제 : userdel (디렉토리는 유지)
+ -r : 계정 완전 삭제 (홈 디렉토리, 메일 디렉토리 모두 삭제)
+
+
+그룹관련 명령어 
+그룹 : 여러 계정을 한번에 관리하기 위해 계정을 묶어둔 것
+
+1. 그룹 추가 : groupadd
+ -g : 주 그룹 지정
+ -G : 보조 그룹으로 지정
+
+2. 그룹 정보 변경 : groupmod
+ -n : 그룹 이름 변경
+
+3. 그룹 정보 삭제 : groupdel
+* 사용자가 주그룹으로 속해있는 그룹은 삭제되지 않는다.
+ 모든 사용자는 반드시 한개의 주 그룹에 속해야 하기 때문
+
+root@goorm:/etc# groupadd groupA		그룹생성
+root@goorm:/etc# useradd u2		유저생성
+root@goorm:/etc# usermod -g groupA u2	유저의 그룹 지정 (주 그룹)
+root@goorm:/etc# tail -1 group		그룹 정보 확인
+u2:x:1004:				u2가 그룹에 속함	(어느 그룹에 속해있는지는 나오지 않음)
+root@goorm:/etc# tail -1 passwd
+u2:x:1002:1003::/home/u2:/bin/bash
+
+
+기본 퍼미션 (Permission, 권한) 
+ 1. r(read) : 읽기 - 8진수 : 4 		파일 읽기 가능
+ 2. w(write) : 쓰기 - 8진수 : 2	파일 수정 가능
+ 3. x(excute) : 실행 - 8진수 : 1	파일 실행 가능
+ 4. -(denied) : 권한 없음
+
+ls -l 파일명 	권한 확인
+-/---/---/---	권한 구역
+
+파일 권한의 구성 : 10개의 문자, 네개의 구역으로 나눔
+1. 첫번째 문자  
+	- : 파일 
+	d : 폴더/디렉토리
+	l : 링크
+		
+2. 2~4번째문자 : 소유자의 읽기(r), 쓰기(w), 실행(x) 권한
+	
+3. 5~7번째 문자 : 소유자가 속한 그룹의 읽기, 쓰기, 실행 권한
+
+4. 8~10번째 문자 : 그 외 유저들의 읽기, 쓰기, 실행 권한
+
+
+ifconfig : 실행 파일, 계정의 서버 확인
+
+chmod : 권한 변경 (change mode)
+	1. chmod octal mod (8진수 모드) 파일명
+		ex) -rwxrw-r-x
+		    0/421/420/401 (8진수 모드)=> 765 
+
+root@goorm:/etc# chmod o-x /sbin/ifconfig
+root@goorm:/etc# ls -l /sbin/ifconfig
+-rwxr-xr-- 1 root root 78960  1월 10  2017 /sbin/ifconfig		일반유저의 x권한 삭제 
+root@goorm:/etc# su u1
+u1@goorm:/etc$ ifconfig
+bash: /sbin/ifconfig: 허가 거부
+
+root@goorm:/tmp/permission# echo "hello permission world" > a.txt
+root@goorm:/tmp/permission# cat a.txt
+hello permission world
+root@goorm:/tmp/permission# ls -l a.txt
+-rw-rw-r-- 1 root root 23 10월 13 02:43 a.txt
+root@goorm:/tmp/permission# chmod 654 a.txt 	8진수 모드로 권한 변경
+root@goorm:/tmp/permission# ls -l a.txt
+-rw-r-xr-- 1 root root 23 10월 13 02:43 a.txt
+
+
+	2. chmod symbolic mode
+		u : user
+		g : group
+		o : other
+		a : all (user, group, other 모두 포함)
+	
+	symbolic mode에서는 세 개의 연산자 (+, -, =)가 사용될 수 있음
+		+ : 특정권한 추가
+		- : 특정권한 제거
+		= : 특정권한 변경	
+chmod u=r-x b.txt 로 명령시 - 표시는 연산자로 인식될 수 있으므로 주고싶은 권한만 입력해서 명령하는것이 바람직
+
+
+파일에 대한 소유자, 그룹 변경 명령어
+
+chown [소유자] [파일명]	소유자 변경
+
+chgrp [그룹] [파일명]	그룹명 변경
+	
+chown [소유자]:[그룹] [파일명] 소유자와 그룹 한번에 변경
+
+
+root@goorm:/tmp# ls -l d.txt
+-rw-rw-r-- 1 u1 u1 0 10월 13 04:21 d.txt
+           소유자 /그룹
+root@goorm:/tmp# chgrp sys d.txt 그룹을 sys로 변경
+root@goorm:/tmp# ls -l d.txt
+-rw-rw-r-- 1 u1 sys 0 10월 13 04:21 d.txt
+
+root@goorm:/tmp# chown root:bin d.txt 소유자와 그룹을 root , bin 으로 변경
+root@goorm:/tmp# ls -l d.txt
+-rw-rw-r-- 1 root bin 0 10월 13 04:21 d.txt
+
+
+
+GCP 방식
+ 1. Console - Web Browser				기초적인 방법
+
+ 2. SDK - App	: 어플 소유해야 가능
+          - GCloud	:  Server to server (CLI방식)		전문적인 방법
+
+
+
+Google Cloud Flatform
+
+local PC 에서 Cloud를 실행하면 제공되는 가상서버에서 sdk와 Shell이 기본적으로 설정되어있음
+클라우드 없이 사용하려면 SDK를 설치해주어야함 (보안에 취약해짐)
+
+계정 이름 목록 
+gcloud auth list
+Credentialed Accounts
+
+ACTIVE: *
+ACCOUNT: student-02-f36a34cfb15c@qwiklabs.net
+
+프로젝트 리스트
+gcloud config list project
+[core]
+project = qwiklabs-gcp-00-3d4de450c037
+
+지역 설정
+student_02_f36a34cfb15c@cloudshell:~ (qwiklabs-gcp-00-3d4de450c037)$ gcloud config set compute/region us-west1
+Updated property [compute/region].
+
+student_02_f36a34cfb15c@cloudshell:~ (qwiklabs-gcp-00-3d4de450c037)$ gcloud config get-value compute/region
+Your active configuration is: [cloudshell-30157]
+us-west1
+
+
+
+IAM (Identity Access Management) - 권한 부여 도구
+
+구성원의 유형 (모두 e-mail을 부여)
+ 일반 계정
+ 서비스 계정 (어플리케이션 계정)
+ 그룹 계정
+ 클라우드 ID
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
