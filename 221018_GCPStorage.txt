@@ -1,0 +1,11 @@
++ Bigtable 선택
+1. 대용량 : 대용량 (1TB)의 반구조화 또는 구조화 데이터
+2. 빠른 속도 : 처리량이 많거나 빠르게 변하는 데이터
+3. NoSQL
+4. 테이터가 다음과 같은 경우
+ - 시계열
+ - 빅데이터
+ - 머신러닝
+
++ OLTP (Online Transaction Processing)
++ OLAP (Online Analytical Processing)
