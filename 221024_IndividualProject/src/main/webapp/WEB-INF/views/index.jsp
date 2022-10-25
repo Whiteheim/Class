@@ -5,20 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="../../resources/jQuery.js"></script>
 </head>
 <body>
 	<header>
-		<h1>title</h1>
+		<h1><a href="/oct24/">요걸로 모하지</a></h1>
 	</header>
 	<div>
-		<span><a rel="/">HOME</a></span>
-		<span>레시피검색</span>
+		<span><a href="/oct24/">HOME</a></span>
+		<span><a href="/oct24/search.page">레시피검색</a></span>
 		<span>나만의 레시피</span>
-		<span>게시판</span>
-		<span>로그인/회원가입</span>
+		<span><a href="/oct24/board.page">게시판</a></span>
+		<span><jsp:include page="${login }"></jsp:include></span>
 	</div>
 	<div>
-		<%-- <jsp:include page="${cp }"></jsp:include> --%>
+		<jsp:include page="${cp }"></jsp:include>
 	</div>
 	
 </body>

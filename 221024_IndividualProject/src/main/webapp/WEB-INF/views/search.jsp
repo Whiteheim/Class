@@ -9,6 +9,7 @@
 <body>
 	<input>
 	<button>검색</button>
-
+	<hr>
+	
 </body>
 </html>

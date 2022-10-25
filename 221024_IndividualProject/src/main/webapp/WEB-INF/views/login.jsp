@@ -9,13 +9,15 @@
 <body>
 		<div>
 		<form action="">
-		<p>아이디 <input></p>
-		<p>비밀번호 <input></p> 
-		</form>
+		<p>아이디 <input id="s_id"></p>
+		<p>비밀번호 <input id="s_id"></p> 
 		<button>로그인</button>
+		</form>
 	</div>
+	<form action="/oct24/TOS.page">
 	<button>회원가입</button>
-	<button>아이디 찾기</button>
-	<button>비밀번호 찾기</button>
+	</form>
+	<input type="button" value="아이디 찾기">
+	<input type="button" value="비밀번호 찾기">
 </body>
 </html>
