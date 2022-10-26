@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heim.oct24.site.SiteMapper">
 	<!-- 회원가입 정보 DB에 등록 -->
-	<insert id="signUpMember" parameterType="com.heim.oct24.site.SiteMember">
-		insert into siteMember values (
-			#{s_name }, #{s_nickName }, #{s_birth }, #{s_id }, #{s_pw }, #{s_mail }, #{s_phoneNumber })
+	<insert id="SUMember" parameterType="com.heim.oct24.site.SiteMember">
+		insert into db_siteMember values (
+			#{s_name}, #{s_nickName}, to_date(#{s_birth}, 'yyyy-MM-dd'), #{s_id}, #{s_pw}, #{s_mail}, #{s_phoneNumber})
 	</insert>
-	<select id="siteMember" resultType="com.heim.oct24.site.SiteMember">
-		select * from siteMember where #{s_id }
+	
+	<!-- 로그인시 정보 확인 -->
+	<select id="siteMembers" resultType="com.heim.oct24.site.SiteMember">
+		select * from db_siteMember where s_id = #{s_id}
 	</select>
 </mapper>

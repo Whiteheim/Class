@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/oct24/signUp.page" method="POST">
+	<form action="/oct24/signUp.page" method="GET">
 		<ul>
 			<li>
 			<textarea>약관내용</textarea>

@@ -1,18 +1,28 @@
 package com.heim.oct24.site;
 
-import java.util.Date;
-
 public class SiteMember {
 	private String s_name;
 	private String s_nickName;
-	private Date s_birth;
+	private String s_birth;
 	private String s_id;
 	private String s_pw;
 	private String s_mail;
 	private String s_phoneNumber;
-	
+
 	public SiteMember() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public SiteMember(String s_name, String s_nickName, String s_birth, String s_id, String s_pw, String s_mail,
+			String s_phoneNumber) {
+		super();
+		this.s_name = s_name;
+		this.s_nickName = s_nickName;
+		this.s_birth = s_birth;
+		this.s_id = s_id;
+		this.s_pw = s_pw;
+		this.s_mail = s_mail;
+		this.s_phoneNumber = s_phoneNumber;
 	}
 
 	public String getS_name() {
@@ -31,11 +41,11 @@ public class SiteMember {
 		this.s_nickName = s_nickName;
 	}
 
-	public Date getS_birth() {
+	public String getS_birth() {
 		return s_birth;
 	}
 
-	public void setS_birth(Date s_birth) {
+	public void setS_birth(String s_birth) {
 		this.s_birth = s_birth;
 	}
 
@@ -70,7 +80,6 @@ public class SiteMember {
 	public void setS_phoneNumber(String s_phoneNumber) {
 		this.s_phoneNumber = s_phoneNumber;
 	}
-	
 	
 	
 }

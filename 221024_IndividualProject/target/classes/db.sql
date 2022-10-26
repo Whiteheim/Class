@@ -1,4 +1,4 @@
-create table siteMember(
+create table db_siteMember(
 	s_name varchar2(10 char) not null,
 	s_nickName varchar2(10 char) primary key,
 	s_birth date not null,
@@ -8,6 +8,6 @@ create table siteMember(
 	s_phoneNumber number(15) not null
 );
 
-alter table siteMember add s_phoneNumber number(15) not null;
-select * from siteMember;
-drop table siteMember cascade constraint purge;
+-- alter table siteMember add s_phoneNumber number(15) not null; 컬럼 추가 명령어
+select * from db_siteMember;
+drop table db_siteMember cascade constraint purge;
