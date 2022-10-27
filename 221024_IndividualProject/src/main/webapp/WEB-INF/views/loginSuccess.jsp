@@ -7,10 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${session. } 님 <br>반갑습니다.
-	
-	<form action="">
-		<button>정보변경</button>
+	${r } <br>
+	${sessionScope.loginMember.s_nickName } 님 <br>반갑습니다.
+	<form action="/oct24/Info.page">
+		<button>정보확인</button>
 	</form>
+	<form action="/oct24/logOut.page">
+		<button>로그아웃</button>
+	</form>
+	
 </body>
 </html>

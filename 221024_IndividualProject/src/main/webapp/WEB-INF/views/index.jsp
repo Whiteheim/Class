@@ -30,6 +30,7 @@
 	<div>
 		<jsp:include page="${cp }"></jsp:include>
 	</div>
+	${r } 
 	
 </body>
 </html>

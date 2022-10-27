@@ -8,7 +8,7 @@ public class SiteMember {
 	private String s_pw;
 	private String s_mail;
 	private String s_phoneNumber;
-
+	
 	public SiteMember() {
 		// TODO Auto-generated constructor stub
 	}

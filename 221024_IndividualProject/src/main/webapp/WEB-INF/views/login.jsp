@@ -10,7 +10,7 @@
 		<div>
 		<form action="/oct24/loginComplite.page" method="POST">
 		<p>아이디 <input name="s_id"></p>
-		<p>비밀번호 <input name="s_pw"></p> 
+		<p>비밀번호 <input name="s_pw" type="password"></p> 
 		<button id="loginBtn">로그인</button>
 		</form>
 	</div>

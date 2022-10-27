@@ -55,7 +55,7 @@ public class MemberController {
 	// 로그인 성공 후 홈페이지 화면
 	@RequestMapping(value="/loginComplite.page", method=RequestMethod.POST)
 	public String loginComplite(SiteMember sm, HttpServletRequest req, HttpServletResponse res) {
-		sDAO.loginMember(req, res);
+		sDAO.loginMember(sm, req, res);
 		sDAO.loginCheck(sm, req);
 		req.setAttribute("cp", "home.jsp");
 		return "index";
