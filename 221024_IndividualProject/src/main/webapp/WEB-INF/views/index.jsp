@@ -9,8 +9,14 @@
 <script type="text/javascript" src="resources/request.js"></script>
 <script type="text/javascript">
 	$(function () {
-		$("#loginBtn").click(function () {
-			alert(${r });
+		$('#findId').click(function () {
+			let option = 'location=no, height=200, width=500, top=50, left=50%';
+			window.open('findId.pop', '아이디찾기', option);
+		});
+
+		$('#findPw').click(function () {
+			let option = 'location=no, height=200, width=500, top=50, left=50%';
+			window.open('findPw.pop', '비밀번호찾기', option);
 		});
 	});
 

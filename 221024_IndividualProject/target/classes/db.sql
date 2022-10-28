@@ -12,3 +12,13 @@ create table db_siteMember(
 
 select * from db_siteMember;
 drop table db_siteMember cascade constraint purge;
+
+create table siteBoard(
+	b_num number(30) primary key,
+	b_title varchar2(30 char) not null,
+	b_author varchar2(10 char) not null,
+	b_date varchar2(20 char) not null,
+	b_thumb number(30) not null
+);
+create sequence seq_siteboard;
+drop table siteBoard cascade constraint purge;

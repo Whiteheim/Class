@@ -17,8 +17,8 @@
 	<form action="/oct24/TOS.page">
 	<button>회원가입</button>
 	</form>
-	<input type="button" value="아이디 찾기">
-	<input type="button" value="비밀번호 찾기">
-	${r }
+	
+	<input id="findId" type="button" value="아이디 찾기">
+	<input id="findPw" type="button" value="비밀번호 찾기">
 </body>
 </html>

@@ -125,6 +125,26 @@ public class SiteDAO {
 			e.printStackTrace();
 		}
 	}
+	
+
+	// 아이디 데이터 마샬링
+	public SiteMembers getIdXml(SiteMember sm, HttpServletRequest req) {
+		List<SiteMember> siteMemebers = ss.getMapper(SiteMapper.class).findId(sm);
+		SiteMembers siteMemberss = new SiteMembers(siteMemebers);
+		return siteMemberss;
+	}
+	
+	// 비밀번호 데이터 마샬링
+	public SiteMembers getPwXml(SiteMember sm, HttpServletRequest req) {
+		List<SiteMember> siteMembers = ss.getMapper(SiteMapper.class).findPw(sm);
+		SiteMembers siteMemberss = new SiteMembers(siteMembers);
+		return siteMemberss;
+	}
+	
+	
+	
+	
+	
 }
 
 
