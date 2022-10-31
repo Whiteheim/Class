@@ -33,8 +33,8 @@
 	<select id="findPw" parameterType="com.heim.oct24.site.SiteMember" resultType="com.heim.oct24.site.SiteMember">
 		select * from db_siteMember where s_id = #{s_id } and s_mail = #{s_mail }
 	</select>
-</mapper>
 
+</mapper>
 
 
 

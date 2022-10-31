@@ -7,25 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<ul>
-		<li>
-			<ul id="content">
-				<li>
-					글 번호				
-				</li>
-				<li>
-					게시글 목록
-				</li>
-				<li>
-					작성자
-				</li>
-				<li>
-					작성 날짜
-				</li>
-			</ul>
-		</li>
-	</ul>
-	<button>게시글 작성</button> -> 게시글 작성 페이지로 넘어가기
+	<table border="1">
+		<tr>
+			<td> 글 번호 </td>
+			<td> 제목 </td>
+			<td> 작성자 </td>
+			<td> 날짜 </td>
+			<td> 추천수 </td>
+		</tr>
+	</table>
+	<form action="/oct24/write.page" method="get">
+	<button>게시글 작성</button>
+	</form>
 	
 </body>
 </html>
