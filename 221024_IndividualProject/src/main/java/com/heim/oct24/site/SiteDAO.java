@@ -35,6 +35,11 @@ public class SiteDAO {
 			
 			sm.setS_birth(birth);
 
+			String test = req.getParameter("s_name");
+			String test2 = sm.getS_id();
+			System.out.println(test);
+			System.out.println(test2);
+			
 			SiteMapper smp = ss.getMapper(SiteMapper.class);
 			if (smp.signUpMember(sm) == 1) {
 				req.setAttribute("r", "회원가입이 완료되었습니다.");

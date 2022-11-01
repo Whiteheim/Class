@@ -1,9 +1,7 @@
 package com.heim.oct24.contents;
 
-import java.math.BigDecimal;
-
 public class Content {
-	private BigDecimal b_num;
+	private String b_num;
 	private String b_title;
 	private String b_content;
 	private String b_author;
@@ -15,7 +13,7 @@ public class Content {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Content(BigDecimal b_num, String b_title, String b_content, String b_author, String b_date, String b_thumb,
+	public Content(String b_num, String b_title, String b_content, String b_author, String b_date, String b_thumb,
 			String b_img) {
 		super();
 		this.b_num = b_num;
@@ -27,11 +25,11 @@ public class Content {
 		this.b_img = b_img;
 	}
 
-	public BigDecimal getB_num() {
+	public String getB_num() {
 		return b_num;
 	}
 
-	public void setB_num(BigDecimal b_num) {
+	public void setB_num(String b_num) {
 		this.b_num = b_num;
 	}
 
@@ -82,7 +80,8 @@ public class Content {
 	public void setB_img(String b_img) {
 		this.b_img = b_img;
 	}
-
+	
+	
 	
 	
 	

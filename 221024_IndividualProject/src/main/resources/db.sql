@@ -25,12 +25,17 @@ create table siteBoard(
 	b_img varchar2(200) not null
 );
 
-
 select * from siteBoard;
 create sequence seq_siteboard;
+drop sequence seq_siteboard;
 drop table siteBoard cascade constraint purge;
 
 insert into SITEBOARD values (seq_siteboard.nextval ,'test1', 'test1', 'test1', default , default, 'test1');
+
+select * from (
+	select rownum rn, b_num, b_title, b_content, b_author, b_date, b_thumb, b_img 
+	from siteboard
+	order by b_num DESC);
 
 
 

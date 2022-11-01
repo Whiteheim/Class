@@ -4,7 +4,21 @@
 	<!-- 게시글 작성 -->
 	<insert id="writeContent" parameterType="com.heim.oct24.contents.Content">
 		insert into siteBoard values (
-		seq_siteboard.nextval, #{b_title, jdbcType=VARCHAR}, #{b_content,jdbcType=VARCHAR}, #{b_author, jdbcType=VARCHAR}, default, default, #{b_img, jdbcType=VARCHAR})
+		seq_siteboard.nextval, #{b_title}, #{b_content}, #{b_author}, default, default, #{b_img})
 	</insert>	
-	<!-- #{b_title, jdbcType=VARCHAR or NUMERIC}  => 값이 없어도 넘어갈 수 있게 설정-->
+	<!-- #{b_title, jdbcType=[VARCHAR or NUMERIC]}  => 값이 없어도 넘어갈 수 있게 설정-->
+
+	<!-- 게시판 보기 -->	
+	<select id="getAllContent" resultType="com.heim.oct24.contents.Content">
+		select * from (
+			select ROWNUM RN, b_num, b_title, b_content, b_author, b_date, b_thumb, b_img 
+			from siteBoard
+			order by b_num DESC)
+	</select>
+	
+	<!-- 게시글 보기 -->
+	<select id="viewPost" parameterType="com.heim.oct24.contents.Content" resultType="com.heim.oct24.contents.Content">
+		select * from siteBoard where b_num = #{b_num }
+	</select>
+	
 </mapper>
