@@ -21,4 +21,55 @@
 		select * from siteBoard where b_num = #{b_num }
 	</select>
 	
+	<!-- 댓글 작성 -->
+	<insert id="writeComment" parameterType="com.heim.oct24.contents.Comment">
+		insert into postReply values (seq_postReply.nextval, #{r_writer}, #{r_comment}, default)
+	</insert>
+	
+	<!-- 댓글 출력 -->
+	<select id="printComment" resultType="com.heim.oct24.contents.Comment">
+		select * from postReply order by r_date
+	</select>
+	
+	<!-- 게시글 검색 -->
+	<select id="getAllContent" parameterType="com.heim.oct24.contents.Content" resultType="com.heim.oct24.contents.Content">
+		select * from (
+			select ROWNUM RN, b_num, b_title, b_content, b_author, b_date, b_thumb, b_img 
+			from siteBoard
+			order by b_num DESC)
+		where b_title like '%'||#{b_title}||'%'
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

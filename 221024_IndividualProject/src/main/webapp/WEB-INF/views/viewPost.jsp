@@ -8,14 +8,19 @@
 </head>
 <body>
 	<h3>${contentsDetail.b_title}</h3>
-	<img width="30px" height="40px" src="resources/img/'${contentDetail.b_img }'">
+	<img src="resources/img/${contentsDetail.b_img }">
 	<div>${contentsDetail.b_content }</div>
 	<hr>
-	<div>댓글 자리</div>
-	<textarea rows="3"></textarea>
-	댓글달기<input type="button">
-	<hr>
-	이전글<input type="button">
-	다음글<input type="button">
+		<jsp:include page="${commentBox }"></jsp:include>
+	
+	<form action="/oct24/comment.jsp" target="commentss">
+		<iframe name="commentss">
+		</iframe>
+		<textarea rows="3" name="r_comment"></textarea>
+		<input type="hidden" name="r_writer" value="${sessionScope.loginMember.s_nickName }">
+		<button>댓글 입력</button>
+	</form>
+	
+	${r }
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 
+import com.heim.oct24.contents.Comment;
 import com.heim.oct24.contents.Content;
 import com.heim.oct24.contents.ContentDAO;
 import com.heim.oct24.site.SiteDAO;
@@ -30,7 +31,13 @@ public class ContentsController {
 		req.setAttribute("cp", "search.jsp");
 		return "index";
 	}
-
+	// 검색 후 결과 
+	public String searchPost(SiteMember sm, Content c, HttpServletRequest req) {
+		sDAO.loginCheck(sm, req);
+		req.setAttribute("cp", "search");
+		return "index";
+	}
+	
 	// 게시판 페이지로
 	@RequestMapping(value="/board.page", method=RequestMethod.GET)
 	public String boardPage(SiteMember sm, HttpServletRequest req) {
@@ -59,14 +66,22 @@ public class ContentsController {
 				
 	}
 	
+	// 댓글 등록
+	@RequestMapping(value="/regComment.page", method=RequestMethod.GET)
+	public void comment(Comment cm, HttpServletRequest req) {
+		cDAO.regComment(cm, req);
+	}
+	
 	// 게시글 보기
 	@RequestMapping(value="/viewPost.page", method=RequestMethod.GET)
 	public String viewPost(Content c, SiteMember sm, HttpServletRequest req) {
 		sDAO.loginCheck(sm, req);
 		cDAO.viewPost(c, req);
+		req.setAttribute("commentBox", "comment.jsp");
 		req.setAttribute("cp", "viewPost.jsp");
 		return "index";
 	}
+	
 }
 
 

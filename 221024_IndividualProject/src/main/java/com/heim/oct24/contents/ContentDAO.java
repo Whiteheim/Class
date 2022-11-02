@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.heim.oct24.site.SiteMapper;
+import com.heim.oct24.site.SiteMember;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -27,7 +29,6 @@ public class ContentDAO {
 		MultipartRequest mr = null;
 		try {
 			path = req.getSession().getServletContext().getRealPath("resources/img");
-			System.out.println(path);
 			
 			mr = new MultipartRequest(req, path, 10 * 10 * 10 * 1024,
 					"UTF-8", new DefaultFileRenamePolicy());
@@ -79,17 +80,51 @@ public class ContentDAO {
 		try {
 			List<Content> cm = ss.getMapper(ContentsMapper.class).viewPost(c);
 			Content post = cm.get(0);
-			System.out.println(post.getB_author());
-			System.out.println(post.getB_img());
-			
 			req.setAttribute("contentsDetail", post);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
+	// 댓글 추가
+	public void regComment(Comment c, HttpServletRequest req) {
+		try {
+			ContentsMapper cm = ss.getMapper(ContentsMapper.class);
+			if (cm.writeComment(c) == 1) {
+				req.setAttribute("r", "댓글 등록 완료");
+			} else {
+				req.setAttribute("r", "댓글 등록 실패");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 댓글 출력 - 재검토
+	public void veiwComment(Comment cm, HttpServletRequest req) {
+		try {
+			List<Comment> lcm = ss.getMapper(ContentsMapper.class).printComment(cm);
+			if (lcm.get(0) != null ) {
+				cm = lcm.get(0);
+				req.setAttribute("comment", cm);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 게시글 검색
+	public void searchPost(Content c, HttpServletRequest req) {
+		try {
+			c = (Content) ss.getMapper(ContentsMapper.class).getAllContent();
+			req.setAttribute("searchResult", c);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 

@@ -1,0 +1,4 @@
+ERD(ER Diagram)
+Entity - Relation Diagram : 개체 관계도
+
+실제로 존재하는 data와 그것들의 관계를 사람이 이해할 수 있는 형태로 구성
