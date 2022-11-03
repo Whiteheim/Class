@@ -32,12 +32,12 @@
 	</select>
 	
 	<!-- 게시글 검색 -->
-	<select id="getAllContent" parameterType="com.heim.oct24.contents.Content" resultType="com.heim.oct24.contents.Content">
+	<select id="searchPost" parameterType="com.heim.oct24.contents.Content" resultType="com.heim.oct24.contents.Content">
 		select * from (
 			select ROWNUM RN, b_num, b_title, b_content, b_author, b_date, b_thumb, b_img 
 			from siteBoard
-			order by b_num DESC)
-		where b_title like '%'||#{b_title}||'%'
+			where b_title like '%'||#{b_title}||'%'
+			order by b_date)
 	</select>
 </mapper>
 

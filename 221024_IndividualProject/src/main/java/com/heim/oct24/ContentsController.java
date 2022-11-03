@@ -1,19 +1,21 @@
 package com.heim.oct24;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.heim.oct24.contents.Comment;
+import com.heim.oct24.contents.Comments;
 import com.heim.oct24.contents.Content;
 import com.heim.oct24.contents.ContentDAO;
+import com.heim.oct24.contents.Posts;
 import com.heim.oct24.site.SiteDAO;
 import com.heim.oct24.site.SiteMember;
-import com.oreilly.servlet.MultipartRequest;
 
 @Controller
 public class ContentsController {
@@ -24,19 +26,6 @@ public class ContentsController {
 	@Autowired
 	ContentDAO cDAO;
 	
-	// 검색 페이지로
-	@RequestMapping(value="/search.page", method=RequestMethod.GET)
-	public String searchPage(SiteMember sm, HttpServletRequest req) {
-		sDAO.loginCheck(sm, req);
-		req.setAttribute("cp", "search.jsp");
-		return "index";
-	}
-	// 검색 후 결과 
-	public String searchPost(SiteMember sm, Content c, HttpServletRequest req) {
-		sDAO.loginCheck(sm, req);
-		req.setAttribute("cp", "search");
-		return "index";
-	}
 	
 	// 게시판 페이지로
 	@RequestMapping(value="/board.page", method=RequestMethod.GET)
@@ -66,21 +55,44 @@ public class ContentsController {
 				
 	}
 	
-	// 댓글 등록
-	@RequestMapping(value="/regComment.page", method=RequestMethod.GET)
-	public void comment(Comment cm, HttpServletRequest req) {
-		cDAO.regComment(cm, req);
-	}
 	
 	// 게시글 보기
 	@RequestMapping(value="/viewPost.page", method=RequestMethod.GET)
 	public String viewPost(Content c, SiteMember sm, HttpServletRequest req) {
 		sDAO.loginCheck(sm, req);
 		cDAO.viewPost(c, req);
-		req.setAttribute("commentBox", "comment.jsp");
 		req.setAttribute("cp", "viewPost.jsp");
 		return "index";
 	}
+
+	// 댓글 추가
+	@RequestMapping(value="regComment.page", method=RequestMethod.POST)
+	public void regComment(Comment c, HttpServletRequest req) {
+		cDAO.regComment(c, req);
+	}
+	
+	// 저장된 댓글 정보 마샬링
+	@RequestMapping(value="/comment.getJSON", method=RequestMethod.GET,
+			produces="application/json; charset=UTF-8")
+	public @ResponseBody Comments getCommentJSON(HttpServletRequest req, HttpServletResponse res) {
+		res.addHeader("Access-Control-Allow-Origin", "*");
+		return cDAO.getJSON(req);
+	}
+	
+	// 검색 페이지로
+	@RequestMapping(value="/search.page", method=RequestMethod.GET)
+	public String searchPage(SiteMember sm, HttpServletRequest req) {
+		sDAO.loginCheck(sm, req);
+		req.setAttribute("cp", "search.jsp");
+		return "index";
+	}
+	
+	// 검색 결과 출력
+	@RequestMapping(value="/search.post", method=RequestMethod.POST)
+	public void searchPost(Content c, HttpServletRequest req) {
+		cDAO.resultSearch(c, req);
+	}
+	
 	
 }
 

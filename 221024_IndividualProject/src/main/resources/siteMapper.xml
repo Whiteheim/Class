@@ -34,10 +34,10 @@
 		select * from db_siteMember where s_id = #{s_id } and s_mail = #{s_mail }
 	</select>
 	
-	<!-- 댓글에 띄울 닉네임 정보 -->
-	<select id="getId" resultType="com.heim.oct24.site.SiteMember">
+	 <!-- 댓글에 띄울 닉네임 정보 -->
+	<!-- <select id="getId" resultType="com.heim.oct24.site.SiteMember">
 		select s_id from db_siteMember
-	</select>
+	</select> -->
 </mapper>
 
 

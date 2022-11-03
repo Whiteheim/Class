@@ -89,42 +89,37 @@ public class ContentDAO {
 	}
 	
 	// 댓글 추가
-	public void regComment(Comment c, HttpServletRequest req) {
+	public void regComment(Comment cm, HttpServletRequest req) {
 		try {
-			ContentsMapper cm = ss.getMapper(ContentsMapper.class);
-			if (cm.writeComment(c) == 1) {
-				req.setAttribute("r", "댓글 등록 완료");
-			} else {
-				req.setAttribute("r", "댓글 등록 실패");
-			}
+			ss.getMapper(ContentsMapper.class).writeComment(cm);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	// 댓글 출력 - 재검토
-	public void veiwComment(Comment cm, HttpServletRequest req) {
+	
+	// 댓글 데이터 가져오기
+	public void veiwComment(HttpServletRequest req) {
 		try {
-			List<Comment> lcm = ss.getMapper(ContentsMapper.class).printComment(cm);
-			if (lcm.get(0) != null ) {
-				cm = lcm.get(0);
-				req.setAttribute("comment", cm);
-			}
+			req.setAttribute("comments", ss.getMapper(ContentsMapper.class).printComment());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	// 게시글 검색
-	public void searchPost(Content c, HttpServletRequest req) {
+	// 댓글 데이터 JSON으로 보내기
+	public Comments getJSON(HttpServletRequest req) {
+		return new Comments(ss.getMapper(ContentsMapper.class).printComment());
+	}
+	
+	// 검색 게시글 출력
+	public void resultSearch(Content c, HttpServletRequest req) {
 		try {
-			c = (Content) ss.getMapper(ContentsMapper.class).getAllContent();
-			req.setAttribute("searchResult", c);
-			
+			req.setAttribute("searchPost", ss.getMapper(ContentsMapper.class).searchPost(c));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 }
 
 

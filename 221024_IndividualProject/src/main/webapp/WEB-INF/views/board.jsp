@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div> 
-		<span>글 번호</span>
+		<span>번호</span>
 		<span>제목</span>
 		<span>작성자</span>
 		<span>날짜</span>
@@ -18,13 +18,13 @@
 			
 		<c:forEach var="board" items="${boards }">
 		<div>
-		<a href="/oct24/viewPost.page?b_num=<c:out value="${board.b_num}"/>">
-		<span>${board.b_num }</span>
-		<span>${board.b_title }</span>
- 		<span>${board.b_author }</span>
-		<span>${board.b_date }</span>
-		<span>${board.b_thumb }</span>
-		</a>
+			<a href="/oct24/viewPost.page?b_num=<c:out value="${board.b_num}"/>">
+				<span>${board.b_num }</span>
+				<span>${board.b_title }</span>
+		 		<span>${board.b_author }</span>
+				<span>${board.b_date }</span>
+				<span>${board.b_thumb }</span>
+			</a>
 		</div>
 		</c:forEach>
 	<form action="/oct24/write.page" method="get">

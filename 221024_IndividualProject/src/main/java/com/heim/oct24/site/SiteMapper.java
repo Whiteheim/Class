@@ -9,5 +9,5 @@ public interface SiteMapper {
 	public abstract Integer deleteMember(SiteMember sm);
 	public abstract List<SiteMember> findId(SiteMember sm);
 	public abstract List<SiteMember> findPw(SiteMember sm);
-	public abstract List<SiteMember> getId(SiteMember sm);
+	//public abstract List<SiteMember> getId(SiteMember sm);
 }

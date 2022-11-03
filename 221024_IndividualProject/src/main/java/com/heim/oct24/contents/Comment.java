@@ -1,5 +1,7 @@
 package com.heim.oct24.contents;
 
+import com.sun.xml.internal.txw2.annotation.XmlElement;
+
 public class Comment {
 	private String r_num;
 	private String r_writer;
@@ -29,7 +31,8 @@ public class Comment {
 	public String getR_writer() {
 		return r_writer;
 	}
-
+	
+	@XmlElement
 	public void setR_writer(String r_writer) {
 		this.r_writer = r_writer;
 	}
@@ -37,7 +40,8 @@ public class Comment {
 	public String getR_comment() {
 		return r_comment;
 	}
-
+	
+	@XmlElement
 	public void setR_comment(String r_comment) {
 		this.r_comment = r_comment;
 	}

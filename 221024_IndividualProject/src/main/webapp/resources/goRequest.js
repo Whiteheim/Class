@@ -9,3 +9,6 @@ function goPost() {
 	f.submit();
 }
 
+function reload() {
+	location.reload();
+};
