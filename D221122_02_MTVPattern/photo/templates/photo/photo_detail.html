@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Photo App</title>
+</head>
+<body>
+	<h1>{{ photo.title }}</h1>
+	<h2><a href="{% url 'photo_edit' pk=photo.pk %}">Edit Photo</a></h2>
+	<h2><a href="{% url 'photo_delete' pk=photo.pk %}">Delete Photo</a></h2>
+	<section>
+		<div>
+			<img alt="{{ photo.title }}" src="{{ photo.image }}" width="300px">
+			<p>{{ photo.description }}</p>
+			<p>{{ photo.author }}, {{ photo.price }}원</p>
+		</div>
+	</section>
+</body>
+</html>

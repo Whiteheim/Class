@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Photo App</title>
+</head>
+<body>
+	<h1><a href="/">Home</a></h1>
+	<div>
+		<section>
+			<h2>New Photo</h2>
+			<form method="post">
+				{% csrf_token %} {{ form.as_p }}
+				<button>Success</button>
+			</form>
+		</section>
+	</div>
+	<!-- 
+		csrf_token : 입력하는 form에 악의적인 코드가 숨겨져 있어 
+					사용자가 원하지 않는 글을 작성하도록 하는 보안 취약점을
+					방지하기 위한 보안 토큰
+		form.as_p : form을 <p> tag를 사용하여 rendering 하도록 함
+					Model의 각 feild를 <p> tag 안에서 label, text로 배치함
+	 -->
+	 
+	 
+	 
+	 
+	 
+	 
+</body>
+</html>

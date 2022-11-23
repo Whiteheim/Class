@@ -1,8 +1,11 @@
 <!DOCTYPE html>
+{% load static %} <!-- css / js / img / ... 자원 관련 파일을 관리해주는 static 폴더 불러오기 -->
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- static 폴더호출 후 css파일이 있는 경로를 호출해 적용-->
+<link rel="stylesheet" href="{% static 'photo/photo_test.css' %}">
 </head>
 <body>
 	<!-- 
@@ -13,7 +16,8 @@
 						{}로 감싸는 형태
 						데이터 입력, for/if등의 구문 사용 가능	
 	 -->
-	 <h1><a href=""> 사진 목록 페이지</a></h1>
+	 <!-- 임의로 지정한 데이터 화면에 띄우기 -->
+	<!--  <h1><a href=""> 사진 목록 페이지</a></h1>
 	 <section>
 	 	<div>
 	 		<h2>
@@ -39,6 +43,78 @@
 	 		alt="장고" width="300px">
 	 		<p>Heim, 3000원</p>
 	 	</div>
+	 </section> -->
+	 
+	 
+	 <!-- admin사이트에서 입력한 데이터 출력하기 -->
+	 <!-- 
+	 	Template Tag 중 변수를 가져 올 때는 중괄호 2개씩
+	 	변수의 속성에 접근할 때는 변수명.속성명으로 가능
+	  -->
+	<h1><a href="">사진 목록 페이지</a></h1>
+	 <h2><a href="{% url 'photo_post'%}">NewPost</a></h2>
+	 <section>
+	 	{% for photo in photos %}
+	 		<div>
+	 			<h2>
+	 				<a href="{% url 'photo_detail' pk=photo.pk %}">{{ photo.title }}</a>
+	 			</h2>
+	 		</div>
+	 		<img src="{{ photo.image }}" alt="{{ photo.title}}" width="100px">
+	 		<p>{{ photo.author }}, {{ photo.price }}원</p>
+	 	{% endfor %}
 	 </section>
+	 
+	 <img src="{% static 'photo/2022092715034348394_1664258624.jpg' %}" width="100px">
+	 {% include 'photo/test.html' %} <!-- 짧은 코드 가져올 때 사용 -->
+
+<!-- 	  {% block content %}
+	  
+	  {% endblock %}
+	    -->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
