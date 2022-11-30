@@ -1,0 +1,269 @@
+새로운 방법의 데이터 처리 
+-> 새로운 플랫폼 사용
+
+[가상머신 프로그램]
+	VMWare	:
+		정식버전은 유료 
+		고사양 요구
+		=> 가상머신의 성능 높음
+		리눅스 자동설치 되어있음 => 설치과정 x 
+
+	VirtualBox :
+		무료
+		비교적 저사양 요구 
+		=> 가상머신의 성능이 비교적 낮음
+		=> Windows가 상대적으로 성능이 높아짐 
+		리눅스 설치과정 필요 
+
+[Linux]		
+	Linux (OS or Core)
+	다양한 회사들이 추가기능을 붙여 Linux 배포판 출시
+
+	같은 계열끼리는 사용법이 비슷
+	
+	계열 종류
+	- RedHat
+		RedHat Linux(대표) - 큰 기업에서 서버로 활용 
+		CentOS Linux
+		Fedora Linux
+
+	- Debian
+		Ubuntu Linux(대표) - 개인이 많이 사용 
+		Debian Linux
+
+	- Mac
+		Mac
+		iOS
+
+	- Android
+		Android
+
+[Hadoop]
+	PC -> Big Data를 소화하기에는 무리가 있음
+
+	다수의 서버급 컴퓨터를 병렬처리한 후 데이터를 다루어야 함 
+	=> 이러한 기능을 해주는 Library
+		=> 대용량의 데이터를 최소비용으로 처리, 저장, 분석
+		=> 속도도 빠름
+	서버는 Windows가 아닌 Linux에 기반 
+	
+서버 = Linux
+	높은 비용
+	서버를 다루기 위한 원격제어가 용이해야함
+------------------------------------------------------------------------------
+
+virtual box 6 .ver
+ubuntu
+
+입력 후 continue -> 설치 -> 설치 완료 후 -> Restart now 클릭 X
+
+메뉴 -> 장치 -> 광학 드라이브 -> 가상 드라이브에서 디스크 꺼내기-> 강제 마운트 해제
+-> 파일 -> 닫기 -> 시스템 전원 끄기 후 다시 시작
+--------------------------------------------------------------------------------------
+메인 화면 -> Ctrl + Alt + T (터미널창)
+		=> ifconfig
+			=> Ethernet / inet addr = ip주소
+
+터미널 정리 -> clear
+------------------------------------------------------------------------------------
+sudo 명령어 (superuser do) - 관리자의 권한
+
+프로그램 설치
+ Java : Maven
+ Python : pip
+ Linux :
+	RedHat계열 : yum
+	Debian계열 : apt-get
+
+sudo apt-get install [프로그램명]	= 설치 
+sudo apt-get remove [프로그램명]	= 삭제 - 설정파일은 남아있음
+sudo apt-get purge [프로그램명]	= 삭제 - 완전 삭제
+
+1) 원격제어가 가능하게 하는 프로토콜
+		(컴퓨터를 안전하게 제어하기 위한 프로토콜, SSH)
+
+		telnet (보안이 낮아 위험) -> 보안이 더 뛰어난 ssh(secure shell)을 사용
+		sudo apt-get install openssh-server
+
+2) Windows PC에서 원격제어
+	putty : ssh client program
+
+간단한 사용법 : 
+	clear - 화면 초기화 
+	pwd(parent working directory) : 현재 위치 확인
+	ls : 폴더 확인
+	ls -l : 폴더를 리스트 형태로 확인
+	ls -a : 숨김폴더까지 확인
+	ls -al : -l + -a
+
+	화살표 위/아래 : 사용했던 명령어
+	history : 사용한 명령어 목록 확인
+		-> !번호 를 이용해 명령어 재실행 가능
+
+ 	cd (Change Directory) 	: 경로이동
+	cd 폴더명 		: 해당 폴더로 이동
+	cd ~ 			: 최상위 폴더로 이동
+	cd .. 			: 상위 폴더로 이동 
+	mkdir (Make directory) 	: 폴더 만들기
+---------------------------------------------------------------------------------------------
+vi editor  = Windows memo
+
+vi editor
+	키보드의 화살표 키를 사용하지 못함 
+vim-tiny 기본 설정 -> 삭제하기
+	sudo apt-get remove vim-tiny
+vim(정식버전) 설치
+	sudo apt-get install vim
+
+	vi [파일명]
+	(vi : 해당하는 파일, 폴더가 있으면 해당하는 파일/폴더 열기
+		없으면 새로 생성 )
+	a : 글쓰기 가능 (insert 모드)
+	/ + 검색어 : 단어 검색 
+	dd : 줄 삭제
+	yy : 줄 복사
+	p : 붙이기
+
+	내용 작성 후 
+	esc + :q!   -> 저장 없이 종료
+	esc + :wq! -> 저장 후 종료
+
+	파일 복사
+	cp	파일명	위치(폴더명)
+
+	파일 삭제
+	rm	-rf	파일명
+
+	r 옵션 : 디렉토리를 삭제
+	f 옵션 : 삭제 여부 없이 삭제
+	Directory를 삭제할 때, 하위 directory들까지 한번에 삭제되므로 주의
+
+	파일 이동
+	mv	파일명	위치(폴더명)
+-----------------------------------------------------------------------------------------------------
+최상위 폴더 -> 메모장 내용 채우기 -> 저장후 새로만든 폴더에 복사해 넣기
+-----------------------------------------------------------------------------------------------------
+Archiving : 여러 파일을 하나로 묶는것
+	tar 파일
+압출 : 파일의 사이즈를 줄이는것
+	gz  (gzip)
+	bz2 (bz2)
+XXX.tar.gz	-> 일반적인 압축 방식
+	c : 압축
+	x : 압축 풀기
+	v : 과정 보여주기 
+	z : gz로 압축
+	j : bz2로 압축
+	f 파일명 : 파일 지정
+
+test 폴더를 test.tar.gz로 아카이빙&압축
+	tar cvzf test.tar.gz test
+
+압축 해제
+	tar xvzf test.tar.gz
+---------------------------------------------------------
+zip 으로 압축
+	zip -r 파일명 압축파일명
+zip -r test.zip test
+
+zip 압축 해제
+	unzip 파일명
+unzip test.zip
+---------------------------------------------------------
+
+FTP 서버
+	: File Transfer Protocol
+	인터넷 망으로 연결이 되어있는 멀리 떨어진 서버로
+	파일을 올리거나 가져오기 위해 필요한 프로토콜
+
+vsftpd 설치
+	sudo apt-get install vsftpd
+설정 파일 수정
+	(최상위 폴더 - etc - vsftpd.conf)
+	sudo vi/etc/vsftpd.conf
+	/찾을 단어 - > enter
+	/write
+	
+	# write_enable=YES -> 주석 해제 후 저장, 종료 
+
+FTP 서버 재시작 (설정 바꾸어서 재시작 )
+	sudo service vsftpd restart
+--------------------------------------------------------------------
+Linux에 openJDK 설치
+
+Linux에는 Python은 내장 되어있음
+Java는 설치 필요
+apt-get 중앙저장소에도 Java는 존재하지 않음
+	-> 사설 저장소 등록
+		주소 : ppa:openjdk-r/ppa
+		sudo add-apt-repository 주소
+		sudo add-apt-repository ppa:openjdk-r/ppa
+
+로컬 apt-get 업데이트
+	sudo apt-get update
+
+openJDK 설치
+	프로그램명 : openjdk-8-jdk
+	sudo apt-get install openjdk-8-jdk
+
+설치 확인
+	java -version
+
+------------------------------------------------------------
+파일 실행
+python
+	python3 파일명.py
+
+Java
+	java -jar 파일명.jar
+
+------------------------------------------------------------------------------------------------------------
+가상머신 총 3대 설치
+	-> Ubuntu 까지만 설치 
+	-> 계정, 비밀번호는 3대 모두 동일하게 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
