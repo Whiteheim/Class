@@ -1,0 +1,171 @@
+가상머신 3대 
+	Ubuntu 까지 설치
+
+Hadoop : Linux 컴퓨터 여러대로 병렬처리해서 분석하는 프로그램
+
+1. Data Node 준비
+Hadoop 참여할 컴퓨터 :
+	Data Node들 중, Main역할을 할 컴퓨터 : Name Node
+
+	10.0.2.15 : Data Node / Name Node
+------------------------------------------------------------------------------------
+2. ssh server 설치
+	3대 전부
+		sudo apt-get install openssh-server
+
+	NM (Name Node)
+		ssh [다른 Node의 ip] -> 원격요청하는 명령어
+			-> 접속 후 비밀번호 입력
+
+2-1. 인증서 만들기 (비밀번호 없이 원격 가능)
+	3대 전부
+		ssh-keygen -t rsa -> 입력후 추가 입력 없이 엔터 3번
+
+2-2. 인증서 다른 컴퓨터에게 전송 (현재 컴퓨터 포함) (putty 사용)
+	모든 컴퓨터의 계정에 모든 컴퓨터의 ip 입력
+		ssh-copy-id -i ~/.ssh/id_rsa.pub 계정@IP
+
+2-3. 확인
+	ssh [다른 Node의 ip] 로 비밀번호 없이 이동 가능한지 확인
+	exit로 나오기
+------------------------------------------------------------------------------------
+3. 필요한것들 설치하기
+3-1. vim-tiny -> vim
+	NM만 설치
+3-2. FTP서버 설치 - 설정 - 재시작
+	NM만 설치
+3-3. openJDK 저장소 - 업데이트 - 설치 - 확인
+	3대 모두
+------------------------------------------------------------------------------------
+Hadoop 설치
+- Linux
+	wget https://downloads.apache.org/hadoop/common/hadoop-3.2.2/hadoop/-3.2.2.tar.gz
+- apche.org 
+	홈페이지에서 받아 알드라이브로 업로드
+	-> Name Node쪽 알드라이브에 업로드
+------------------------------------------------------------------------------------
+압축 풀기
+	통일성을 위해 폴더 하나 만들기 - 이름 : hadoop
+	> mkdir hadoop
+	hadoop 폴더로 tar.gz파일 옮겨서 
+	> mv hadoop-3.2.2.tar.gz hadoop
+	압축 풀기
+	> tar xvzf hadoop-3.2.2.tar.gz
+	압축 파일 제거
+	> rm -rf hadoop-3.2.2.tar.gz
+
+------------------------------------------------------------------------------------
+설정파일 쪽으로 이동 (최상위 폴더 기준)
+	> cd hadoop/hadoop-3.2.2/etc/hadoop
+
+hadoop 설정
+1. JDK위치 설정 
+	1) vi hadoop-env.sh
+	2) export 검색 -> export JAVA_HOME=
+	3) a 눌러 insert모드 후 주석 해제
+	4) /usr/lib/jvm/java-8-openjdk-amd64 추가
+	5) 저장후 종료
+
+2. 기본 설정
+	1) vi core-site.xml
+	2) <configration> </configration> 태그에 내용 입력
+
+	<configration>
+		<property>
+			<name>fs.default.name</name>
+			<value>hdfs://[NameNodeIP]:9000</value>
+		</property>
+		<property>
+			<name>hadoop.tmp.dir</name>
+			<value>/home/[계정]/hadoopTmpData</value>
+		</property>
+	</configration>
+
+	3) 저장 후 종료
+
+3. Hadoop 파일시스템 관련 설정
+	1) vi hdfs-site.xml
+	2) <configration> </configration> 태그에 내용 입력
+
+	<configration>
+		<property>
+			<name>dfs.replication</name>
+			<value>[컴퓨터수]</value>
+		</property>
+		<property>
+			<name>dfs.http.address</name>
+			<value>[NameNodeIP]:50070</value>
+		</property>
+		<property>
+			<name>dfs.secondary.http.address</name>
+			<value>[다른 컴퓨터IP]:50090</value>		(서브로 사용할 컴퓨터의 ip)
+		</property>
+	</configration>
+
+	3) 저장 후 종료
+
+4. MapReduce 작업 관련 설정
+	1) vi mapred-site.xml
+	2) <configration> </configration> 태그에 내용 입력
+
+	<configration>
+		<property>
+			<name>mapred.job.tracker</name>
+			<value>[NameNodeIP]:9001</value>
+		</property>
+	<configration>	
+
+5. 사용할 컴퓨터 등록
+	1) vi workers
+	2) localhost 삭제
+	3) 사용할 컴퓨터 IP 주소 다 등록
+		ex) 1번째 ip (enter 후 입력)
+		     2번째 ip
+	4) 작성 완료 후 enter 한번 후 저장&종료
+
+6. 설정한거 -> 나머지 컴퓨터로 전송
+
+최상위 폴더 -> Hadoop폴더 압축
+알드라이브 -> 새로고침 -> 윈도우에 저장
+-> 각 linux 컴퓨터에 보내기
+-> Name Node 제외한 나머지 컴퓨터에 압축 해제 후 압축 파일 삭제
+
+------------------------------------------------------------------------------------------------------------
+모든 컴퓨터
+	Hadoop 설정 잘 되어있는지 확인
+------------------------------------------------------------------------------------------------------------
+Hadoop 실행 전 체크하기
+1. hadoop 실행하면 나오는 잔여폴더들 삭제
+	rm -rf ~/hadoopTmpData
+
+2. hadoop 폴더로 이동
+	Name Node only
+	cd ~/hadoop/hadoop-3.2.2
+
+3. hadoop system format (Name Node only)
+	bin/hadoop namenode -format
+	bin/hadoop datanode -format
+
+4. 시작
+	Name Node only
+		sbin/start-all.sh
+		-> jsp명령어로 확인
+5. 오류가 났을 때 (jsp명령어에서 jsp가 나오지 않았을 때)
+	sbin/stop-all.sh
+	-> 설정쪽 문제일 확률 O
+	hadoop끄기 -> 설정 한번 더 확인 -> 1~4 재실행
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
