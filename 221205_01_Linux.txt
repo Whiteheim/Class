@@ -1,0 +1,85 @@
+gutenburg.org
+	-> 원하는 소설 찾아 Text UTF-8 저장
+	-> NameNode 의 hadoop/hadoop-3.2.2 에 저장 (알 드라이브 이용)
+	-> ls로 확인
+
+HDFS 확인 (HaDoopFileSystem)
+	bin/hadoop fs -ls /
+
+HDFS로 파일 업로드
+	bin/hadoop fs -put 파일명 HDFS경로 
+	bin/hadoop fs -put pinoccio.txt /
+---------------------------------------------------------------------------------------
+Java에서 작업한 .jar파일 알 드라이브에 넣기
+
+wc.jar
+	bin/hadoop jar 파일명.jar
+	bin/hadoop jar wc.jar
+
+wc2.jar
+	bin/hadoop jar 파일명.jar 분석할파일명 결과폴더명
+	bin/hadoop jar wc2.jar /pinoccio.txt /sResult2
+
+HDFS확인
+	bin/hadoop fs -ls /
+실행하면 결과폴더/part-r-00000로 결과파일을 만들어줌
+
+결과 파일 가져오기
+	bin/hadoop fs -get HDFS에 있는 뭔가를 NameNode의 어디로
+	bin/hadoop fs -get /sResult/part-r-00000 sResult.txt
+
+ls를 이용, Linux로 가져와졌는지 확인
+
+=========================================================
+결과가 안나오거나 잘못됐다면
+	jps 목록 잘 나오는지 확인
+	-> 잘 안나오면다면 셋팅 다시 검토
+
+실행할 때 결과 폴더가 없어야함.
+	bin/hadoop fs -rm -r HDFS경로
+	bin/hadoop fs -rm -r /sResult
+
+--------------------------------------------------------------------------------------------
+삼국지 1 ~ 10권
+유비(현덕), 조조(맹덕), 손권(중모) 언급 횟수 카운트 프로그램 제작
+Hadoop 실행으로 결과 출력
+R Studio에서 barplot, pie 언급 횟수 차트 나타내기
+
+분석용 파일을 HDFS 최상위로 업로드
+	bin/hadoop fs -put RTK* / 		(RTK* : RTK로 시작하는 모든 파일)
+
+실행
+	bin/hadoop jar jar파일명 /저장할 폴더
+	bin/hadoop jar tk.jar /tkResult
+확인
+	bin/hadoop fs -ls /
+결과 파일 가져오기
+	bin/hadoop fs -get /tkResult/part-r-00000 tkResult.txt	
+
+
+-------------------------------------------------------------------------------------
+bus data 19~21년 
+요일별 승차인원 + 하차인원
+그래프로 표현하기(barplot, pie, ...) (일, 월, 화, 수, 목, 금, 토)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
